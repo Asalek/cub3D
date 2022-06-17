@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:21:05 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/15 12:13:33 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:07:22 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	stor_map(t_map *map, int i)
 	int	l;
 
 	j = 0;
-	map->map = malloc((map->colomn - i) + 1);
+	while (map->tab[i][0] == '\n' || !map->tab[i][0])
+		i++;
+	map->map = malloc(sizeof(char **) * (map->colomn - i) + 1);
 	while (i < map->colomn)
 	{
 		e = 0;
@@ -112,12 +114,11 @@ void	stor_map(t_map *map, int i)
 			map->map[j][e] = map->tab[i][e];
 			e++;
 		}
-		printf("%s\n", map->map[j]);
 		map->map[j][e] = '\0';
 		i++;
 		j++;
 	}
-	map->map = (NULL);
+	map->map[j] = (NULL);
 }
 
 void	read_map(t_map *map)
@@ -145,9 +146,12 @@ void	read_map(t_map *map)
 			ft_color_ceiling(map, i, &e);
 		else if (e == 6)
 		{
-			stor_map(map, i);
+			stor_map(map, i + 1);
 			break ;
 		}
 		i++;
 	}
+	for (i = 0; i < map->colomn; i++)
+		free(map->tab[i]);
+	free(map->tab);
 }
