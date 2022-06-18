@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/17 11:17:28 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/17 22:42:24 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ int	main(int ac, char **av)
 		return (1);
 	map.colomn = read_map_size(av[1]);
 	get_map(av[1], &map);
-//	ft_init(&map);
+	ft_init(&map);
 	read_map(&map);
+	map_check(&map);
 	printf("%s\n", map.north);
 	printf("%s\n", map.south);
 	printf("%s\n", map.west);

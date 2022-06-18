@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:21:05 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/17 15:07:22 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:51:19 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 char	*ft_path(t_map *map, char *line, int i, int *e)
 {
-	int	n;
-	int	l;
-	int	j;
+	int			n;
+	int			l;
+	int			j;
+	static int	f;
 
 	n = 0;
 	l = 0;
@@ -33,19 +34,24 @@ char	*ft_path(t_map *map, char *line, int i, int *e)
 	}
 	line[n] = '\0';
 	(*e)++;
+	f++;
+	if (f > 4)
+	{
+		printf("error ");
+		exit(1);
+	}
 	return (line);
 }
 
 void	ft_color_ceiling(t_map *map, int i, int *e)
 {
-	int		n;
-	int		l;
-	int		j;
-	char	tmp[4];
+	static int		l;
+	int				n;
+	int				j;
+	char			tmp[4];
 
 	j = 1;
-	l = 0;
-	while (map->tab[i][j] == ' ' || map->tab[i][j] == '\t')
+	while (map->tab[i][j] <= 32)
 		j++;
 	while (map->tab[i][j])
 	{
@@ -62,19 +68,29 @@ void	ft_color_ceiling(t_map *map, int i, int *e)
 			map->c.b = ft_atoi(tmp);
 		l++;
 	}
+	if ((map->c.r < 0 || map->c.r > 255) || (map->c.g < 0 || map->c.g > 255) \
+		|| (map->c.b < 0 || map->c.b > 255))
+		{
+			printf("error too big/small");
+			exit(1);
+		}
+	if (l != 3)
+	{
+		printf("error more/less than expact C");
+		exit(1);
+	}
 	(*e)++;
 }
 
 void	ft_color_floor(t_map *map, int i, int *e)
 {
 	int		n;
-	int		l;
+	static int		l;
 	int		j;
 	char	tmp[4];
 
 	j = 1;
-	l = 0;
-	while (map->tab[i][j] == ' ' || map->tab[i][j] == '\t')
+	while (map->tab[i][j] <= 32)
 		j++;
 	while (map->tab[i][j])
 	{
@@ -91,6 +107,17 @@ void	ft_color_floor(t_map *map, int i, int *e)
 			map->f.b = ft_atoi(tmp);
 		l++;
 	}
+	if ((map->f.r < 0 || map->f.r > 255) || (map->f.g < 0 || map->f.g > 255) \
+		|| (map->f.b < 0 || map->f.b > 255))
+		{
+			printf("error too big/small");
+			exit(1);
+		}
+	if (l != 3)
+	{
+		printf("error more/less than expact F");
+		exit(1);
+	}
 	(*e)++;
 }
 
@@ -101,9 +128,10 @@ void	stor_map(t_map *map, int i)
 	int	l;
 
 	j = 0;
-	while (map->tab[i][0] == '\n' || !map->tab[i][0])
+	while (!map->tab[i][0])
 		i++;
-	map->map = malloc(sizeof(char **) * (map->colomn - i) + 1);
+	map->ln = map->colomn - i;
+	map->map = malloc(sizeof(char **) * map->ln + 1);
 	while (i < map->colomn)
 	{
 		e = 0;
@@ -146,10 +174,15 @@ void	read_map(t_map *map)
 			ft_color_ceiling(map, i, &e);
 		else if (e == 6)
 		{
-			stor_map(map, i + 1);
+			stor_map(map, i);
 			break ;
 		}
 		i++;
+	}
+	if (e < 6)
+	{
+		printf("error ");
+		exit (1);
 	}
 	for (i = 0; i < map->colomn; i++)
 		free(map->tab[i]);

@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:32:13 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/14 11:16:41 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/18 00:01:52 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,21 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
+int	ft_isdigit(int c)
+{
+	return (c >= 48 && c <= 57);
+}
+
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		moins;
-	double	res;
+	int	i;
+	int	moins;
+	int	res;
 
 	i = 0;
 	moins = 0;
 	res = 0;
-	while ((str[i]) && (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' '))
+	while ((str[i]) <= 32)
 		i++;
 	if ((str[i]) && (str[i] == '-' || str[i] == '+'))
 	{
@@ -69,8 +73,13 @@ int	ft_atoi(const char *str)
 			moins++;
 		i++;
 	}
-	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+	while (str[i] != '\0')
 	{
+		if (!ft_isdigit(str[i]))
+			{
+				printf("error");
+				exit(1);
+			}
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
