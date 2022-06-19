@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:21:15 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/17 23:21:15 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/19 12:36:08 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ void	map_check(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
+			while (map->map[i][j] && map->map[i][j] <= 32)
+			{
+				j++;
+				if (!map->map[i][j])
+				{
+					printf("vide line a bro");
+					exit (1);
+				}
+			}
 			if (map->map[i][j] != '0' && map->map[i][j] != '1' \
 			&& map->map[i][j] != 'N' && map->map[i][j] != 'S' \
 			&& map->map[i][j] != 'W' && map->map[i][j] != 'E' \
@@ -43,7 +52,12 @@ void	map_check(t_map *map)
 			}
 			else if (map->map[i][j] == '0')
 			{
-				if (map->map[i - 1][j] <= 32 || map->map[i + 1][j] <= 32 \
+				if (i == 0 || i == map->ln - 1)
+				{
+					printf("error");
+					exit(1);
+				}
+					if (map->map[i - 1][j] <= 32 || map->map[i + 1][j] <= 32 \
 				|| map->map[i][j - 1] <= 32 || map->map[i][j + 1] <= 32 )
 				{
 					printf("error  0 nieber not expexted");
@@ -52,21 +66,21 @@ void	map_check(t_map *map)
 			}
 			else if (map->map[i][j] == 'S' || map->map[i][j] == 'N' \
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
-				{
-					if (i == 0 || i == map->ln - 1)
-					{
-					printf("error");
-					exit(1);
-					}
-					else if ((map->map[i - 1][j] != '1' && map->map[i - 1][j] != '0') \
-				|| (map->map[i][j - 1] != '1' && map->map[i][j - 1] != '0') \
-				|| (map->map[i + 1][j] != '0' && map->map[i + 1][j] != '1') \
-				|| (map->map[i][j + 1] != '0' && map->map[i][j + 1] != '1'))
+			{
+				if (i == 0 || i == map->ln - 1)
 				{
 					printf("error");
 					exit(1);
 				}
+				else if ((map->map[i - 1][j] != '1' && map->map[i - 1][j] != '0') \
+					|| (map->map[i][j - 1] != '1' && map->map[i][j - 1] != '0') \
+					|| (map->map[i + 1][j] != '0' && map->map[i + 1][j] != '1') \
+					|| (map->map[i][j + 1] != '0' && map->map[i][j + 1] != '1'))
+				{
+					printf("error");
+					exit(1);
 				}
+			}
 			if (map->map[i][j] == 'W')
 				w++;
 			if (map->map[i][j] == 'S')

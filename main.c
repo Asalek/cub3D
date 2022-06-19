@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/17 22:42:24 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/18 18:21:10 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int ac, char **av)
 {
 	t_map	map;
 
+	map.tab = NULL;
 	if (arg_chek(ac, av))
 		return (1);
 	map.colomn = read_map_size(av[1]);
