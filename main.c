@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/18 18:21:10 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:24:52 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	ft_init(t_map *map)
 	map->west = NULL;
 	map->south = NULL;
 	map->map = NULL;
+	map->w = 0;
+	map->s = 0;
+	map->n = 0;
+	map->e = 0;
 }
 
 int	arg_chek(int ac, char **av)

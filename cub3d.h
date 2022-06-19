@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/17 23:21:40 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:51:47 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef struct s_map {
 	char	*west;
 	char	*east;
 	char	*south;
+	int		w;
+	int		s;
+	int		e;
+	int		n;
 
 	t_color	f;
 	t_color	c;
@@ -49,6 +53,7 @@ void	read_map(t_map *tab);
 
 //-------------------check map :
 void	map_check(t_map *map);
+void	error_map(int num);
 
 //------------------read line :
 char	*get_next_line(int fd);

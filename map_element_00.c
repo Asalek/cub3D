@@ -6,17 +6,23 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:21:05 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/19 12:23:49 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/19 20:49:12 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_path(t_map *map, char *line, int i, int *e, int j)
+/*void	error_color(int num)
+{
+	
+}*/
+
+char	*ft_path(t_map *map, int i, int *e, int j)
 {
 	int			n;
 	int			l;
-	static int	f;
+	static int	many;
+	char		*line;
 
 	n = 0;
 	l = 0;
@@ -32,12 +38,9 @@ char	*ft_path(t_map *map, char *line, int i, int *e, int j)
 	}
 	line[n] = '\0';
 	(*e)++;
-	f++;
-	if (f > 4)
-	{
-		printf("error ");
-		exit(1);
-	}
+	many++;
+	if (many > 4)
+		error_map(6);
 	return (line);
 }
 
@@ -57,10 +60,11 @@ void	ft_color_ceiling(t_map *map, int i, int *e, int j)
 		while (map->tab[i][j] && map->tab[i][j] != ',')
 			tmp[n++] = map->tab[i][j++];
 		tmp[n] = '\0';
-		if (map->tab[i][j] && map->tab[i][j] == ',')
+		if (map->tab[i][j])
 		{
+			if (map->tab[i][j] == ',')
+				r++;
 			j++;
-			r++;
 		}
 		if (l == 0)
 			map->c.r = ft_atoi(tmp);
@@ -72,16 +76,15 @@ void	ft_color_ceiling(t_map *map, int i, int *e, int j)
 	}
 	if (r != 2)
 	{
-		printf("error a ssat error");
+		printf("error a ssat error siiii");
 		exit(1);
 	}
-	if ((map->c.r < 0 || map->c.r > 255) || (map->c.g < 0 || map->c.g > 255) \
-		|| (map->c.b < 0 || map->c.b > 255))
-		{
-			printf("error too big/small");
-			exit(1);
-		}
-	printf("l de c %d\n", l);
+	if ((map->c.r < 0 || map->c.r > 255) || (map->c.g < 0 \
+		|| map->c.g > 255) || (map->c.b < 0 || map->c.b > 255))
+	{
+		printf("error too big/small");
+		exit(1);
+	}
 	if (l != 3)
 	{
 		printf("error more/less than expact C");
@@ -106,10 +109,11 @@ void	ft_color_floor(t_map *map, int i, int *e, int j)
 		while (map->tab[i][j] && map->tab[i][j] != ',')
 			tmp[n++] = map->tab[i][j++];
 		tmp[n] = '\0';
-		if (map->tab[i][j] && map->tab[i][j] == ',')
+		if (map->tab[i][j])
 		{
+			if (map->tab[i][j] == ',')
+				r++;
 			j++;
-			r++;
 		}
 		if (l == 0)
 			map->f.r = ft_atoi(tmp);
@@ -121,16 +125,15 @@ void	ft_color_floor(t_map *map, int i, int *e, int j)
 	}
 	if (r != 2)
 	{
-		printf("error a ssat error");
+		printf("error a ssat error siii");
 		exit(1);
 	}
-	if ((map->f.r < 0 || map->f.r > 255) || (map->f.g < 0 || map->f.g > 255) \
-		|| (map->f.b < 0 || map->f.b > 255))
-		{
-			printf("error too big/small");
-			exit(1);
-		}
-	printf("l de f %d\n", l);
+	if ((map->f.r < 0 || map->f.r > 255) || (map->f.g < 0 \
+		|| map->f.g > 255) || (map->f.b < 0 || map->f.b > 255))
+	{
+		printf("error too big/small");
+		exit(1);
+	}
 	if (l != 3)
 	{
 		printf("error more/less than expact F");
@@ -172,22 +175,46 @@ void	double_check(t_map *map, int i, int *e, int j)
 	while (map->tab[i][j] && map->tab[i][j] <= 32)
 		j++;
 	if (map->tab[i][j] == 'N' && map->tab[i][j + 1] == 'O')
-		map->north = ft_path(map, map->north, i, e, j+ 1);
+		map->north = ft_path(map, i, e, j + 2);
 	else if (map->tab[i][j] == 'S' && map->tab[i][j + 1] == 'O')
-		map->south = ft_path(map, map->south, i, e, j+ 1);
+		map->south = ft_path(map, i, e, j + 2);
 	else if (map->tab[i][j] == 'W' && map->tab[i][j + 1] == 'E')
-		map->west = ft_path(map, map->west, i, e, j+ 1);
+		map->west = ft_path(map, i, e, j + 2);
 	else if (map->tab[i][j] == 'E' && map->tab[i][j + 1] == 'A')
-		map->east = ft_path(map, map->east, i, e, j+ 1);
+		map->east = ft_path(map, i, e, j + 2);
 	else if (map->tab[i][j] == 'F')
 		ft_color_floor(map, i, e, j+ 1);
 	else if (map->tab[i][j] == 'C')
 		ft_color_ceiling(map, i, e, j+ 1);
 	else if (map->tab[i][j])
 	{
-		printf("error double check");
+		printf("Error:\n\tMore/less Element Needed\n\t\tWrong !!\n");
 		exit(1);
 	}
+}
+
+int	while_condition(t_map *map, int i, int j, int *e)
+{
+	if (map->tab[i][j] == 'N' && map->tab[i][j + 1] == 'O')
+		map->north = ft_path(map, i, e, j + 2);
+	else if (map->tab[i][j] == 'S' && map->tab[i][j + 1] == 'O')
+		map->south = ft_path(map, i, e, j + 2);
+	else if (map->tab[i][j] == 'W' && map->tab[i][j + 1] == 'E')
+		map->west = ft_path(map, i, e, j + 2);
+	else if (map->tab[i][j] == 'E' && map->tab[i][j + 1] == 'A')
+		map->east = ft_path(map, i, e, j + 2);
+	else if (map->tab[i][j] == 'F')
+		ft_color_floor(map, i, e, j + 1);
+	else if (map->tab[i][j] == 'C')
+		ft_color_ceiling(map, i, e, j + 1);
+	else if ((*e) == 6)
+	{
+		stor_map(map, i);
+		return(1);
+	}
+	else if ((*e) < 6)
+		double_check(map, i, e, j + 1);
+	return (0);
 }
 
 void	read_map(t_map *map)
@@ -201,33 +228,20 @@ void	read_map(t_map *map)
 	while (i < map->colomn)
 	{
 		j = 0;
-		if (map->tab[i][j] == 'N' && map->tab[i][j + 1] == 'O')
-			map->north = ft_path(map, map->north, i, &e, j + 1);
-		else if (map->tab[i][j] == 'S' && map->tab[i][j + 1] == 'O')
-			map->south = ft_path(map, map->south, i, &e, j + 1);
-		else if (map->tab[i][j] == 'W' && map->tab[i][j + 1] == 'E')
-			map->west = ft_path(map, map->west, i, &e, j + 1);
-		else if (map->tab[i][j] == 'E' && map->tab[i][j + 1] == 'A')
-			map->east = ft_path(map, map->east, i, &e, j + 1);
-		else if (map->tab[i][j] == 'F')
-			ft_color_floor(map, i, &e, j + 1);
-		else if (map->tab[i][j] == 'C')
-			ft_color_ceiling(map, i, &e, j + 1);
-		else if (e == 6)
-		{
-			stor_map(map, i);
+		if (while_condition(map, i, j, &e))
 			break ;
-		}
-		else if (e < 6)
-			double_check(map, i, &e, j + 1);
 		i++;
 	}
-	if (e < 6)
+	i = 0;
+	while (i < map->colomn)
 	{
-		printf("error ");
-		exit (1);
-	}
-	for (i = 0; i < map->colomn; i++)
 		free(map->tab[i]);
+		i++;
+	}
 	free(map->tab);
+	if (!map->east || !map->north || !map->west || !map->south)
+	{
+		printf("Error:\n\tPath Duplicated \n\t    Wrong !!\n");
+		exit(1);
+	}
 }
