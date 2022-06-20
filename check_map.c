@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:21:15 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/19 20:20:36 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/20 22:39:17 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	error_map(int num)
 		printf("Error:\n\tOnly One Player Valid\n\t\tWrong !!\n");
 	else if (num == 6)
 		printf("Error:\n\tOnly One Path Valid\n\t\tWrong !!\n");
+	else if (num == 7)
+		printf("Error:\n\tInvalid Path Check Again\n\t\tWrong !!\n");
 	exit (1);
 }
 
@@ -71,13 +73,16 @@ void	ft_conditions_check(t_map *map, int i, int j)
 	}
 }
 
-void	ft_somme(t_map *map)
+void	player_path(t_map *map)
 {
 	int	somme;
 
 	somme = map->n + map->e + map->s + map->w;
 	if (somme != 1)
 		error_map(5);
+	if (open(map->north, O_RDONLY) <= 0 || open(map->east, O_RDONLY) <= 0 \
+		|| open(map->west, O_RDONLY) <= 0 || open(map->south, O_RDONLY) <= 0)
+		error_map(7);
 }
 
 void	map_check(t_map *map)
@@ -105,5 +110,5 @@ void	map_check(t_map *map)
 			error_map(4);
 		i++;
 	}
-	ft_somme(map);
+	player_path(map);
 }
