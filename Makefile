@@ -6,7 +6,7 @@
 #    By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 04:37:57 by yelgharo          #+#    #+#              #
-#    Updated: 2022/06/17 15:30:06 by yelgharo         ###   ########.fr        #
+#    Updated: 2022/06/20 11:55:13 by yelgharo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,13 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC := main.c tools_00.c tools_01.c get_map.c get_next_line.c \
-	map_element_00.c check_map.c
+SRC := main.c tools_00.c \
+		tools_01.c \
+		get_map.c \
+		get_next_line.c \
+		map_element_00.c \
+		check_map.c \
+		check_color.c
 
 OBJ := $(SRC:.c=.o)
 

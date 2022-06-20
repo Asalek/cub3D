@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/19 16:51:47 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:56:49 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	read_map(t_map *tab);
 //-------------------check map :
 void	map_check(t_map *map);
 void	error_map(int num);
+void	ft_color_ceiling(t_map *map, int i, int *e, int j);
+void	ft_color_floor(t_map *map, int i, int *e, int j);
 
 //------------------read line :
 char	*get_next_line(int fd);

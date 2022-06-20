@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:32:13 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/18 00:01:52 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:23:06 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	ft_atoi(const char *str)
 	i = 0;
 	moins = 0;
 	res = 0;
-	while ((str[i]) <= 32)
-		i++;
 	if ((str[i]) && (str[i] == '-' || str[i] == '+'))
 	{
 		if (str[i] == '-')
@@ -76,12 +74,11 @@ int	ft_atoi(const char *str)
 	while (str[i] != '\0')
 	{
 		if (!ft_isdigit(str[i]))
-			{
-				printf("error");
-				exit(1);
-			}
-		res = res * 10 + str[i] - '0';
-		i++;
+		{
+			printf("Error:\n\tNot Digit\n\t\tWrong !!\n");
+			exit(1);
+		}
+		res = res * 10 + str[i++] - '0';
 	}
 	if (moins % 2 == 0)
 		return (res);
