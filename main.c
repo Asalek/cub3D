@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/19 15:24:52 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:31:53 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,5 @@ int	main(int ac, char **av)
 	ft_init(&map);
 	read_map(&map);
 	map_check(&map);
-	printf("%s\n", map.north);
-	printf("%s\n", map.south);
-	printf("%s\n", map.west);
-	printf("%s\n", map.east);
-	printf("r : %d|\tg : %d|\tb : %d\n", map.f.r, map.f.g, map.f.b);
-	printf("r : %d|\tg : %d |\tb : %d\n", map.c.r, map.c.g, map.c.b);
-	int i = 0;
-	while (map.map[i])
-	{
-		printf("%s\n",map.map[i]);
-		i++;
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:32:13 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/20 13:23:06 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:31:03 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	{
 		if (*s1 != *s2 || *s1 == '\0' || *s2 == '\0')
 			return (*(unsigned char *)s1 - *(unsigned char *)s2);
-			s1++;
-			s2++;
+		s1++;
+		s2++;
 	}
 	return (0);
 }

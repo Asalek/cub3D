@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:21:15 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/20 22:39:17 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:20:29 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,23 @@ void	ft_conditions_check(t_map *map, int i, int j)
 
 void	player_path(t_map *map)
 {
-	int	somme;
+	int	n;
+	int	s;
+	int	e;
+	int	w;
 
-	somme = map->n + map->e + map->s + map->w;
-	if (somme != 1)
+	n = open(map->north, O_RDONLY);
+	s = open(map->south, O_RDONLY);
+	e = open(map->east, O_RDONLY);
+	w = open(map->west, O_RDONLY);
+	if ((map->n + map->e + map->s + map->w) != 1)
 		error_map(5);
-	if (open(map->north, O_RDONLY) <= 0 || open(map->east, O_RDONLY) <= 0 \
-		|| open(map->west, O_RDONLY) <= 0 || open(map->south, O_RDONLY) <= 0)
+	if (n <= 0 || e <= 0 || s <= 0 || w <= 0)
 		error_map(7);
+	close(n);
+	close(s);
+	close(e);
+	close(w);
 }
 
 void	map_check(t_map *map)
