@@ -59,3 +59,16 @@ int	main(int ac, char **av)
 	map_check(&map);
 	return (0);
 }
+
+
+/*
+int main(void)
+{
+	t_info	s;
+
+	s.mlx_ptr = mlx_init();
+	s.win_ptr = mlx_new_window (s.mlx_ptr, X_AXIS, Y_AXIS, "Mandelbrot_Set");
+
+	mlx_loop(s.mlx_ptr);
+	return (0);
+}*/

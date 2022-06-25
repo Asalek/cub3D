@@ -1,29 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/14 04:37:57 by yelgharo          #+#    #+#              #
-#    Updated: 2022/06/20 11:55:13 by yelgharo         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = lib_cub3d.a
-
-GREEN = \x1b[32m
-
-define CUB
- 			!! CuB3D !!
-endef
-export CUB
-
-CC = gcc
-
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
+NAME = cub3d
+UNAME = $(shell uname -s)
 
-SRC := main.c tools_00.c \
+CFILES = main.c \
+		tools_00.c \
 		tools_01.c \
 		get_map.c \
 		get_next_line.c \
@@ -31,26 +12,29 @@ SRC := main.c tools_00.c \
 		check_map.c \
 		check_color.c
 
-OBJ := $(SRC:.c=.o)
+OFILES = $(CFILES:.c=.o)
+
+ifeq ($(UNAME), Darwin)
+MLXFLAGS =  -O3 -lmlx -framework OpenGL -framework AppKit -lz minilibx_opengl_20191021/libmlx.a
+endif
+ifeq ($(UNAME), Linux)
+	MLXFLAGS = -lmlx -lXext -lX11 -lm
+endif
 
 all : $(NAME)
 
-%.o:%.c
-	@$(CC) $(CFLAGS) -c $<
+$(NAME) : $(OFILES)
+	@${CC} $^ -o $@ ${MLXFLAGS}
 
-$(NAME): text $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ)  -o cub3d
-	
-clean : 
-	@rm -f $(OBJ) cub3d
-	
+$(SRC)/%.o: $(SRC)/%.c include/%.h
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+clean :
+	@rm -rf ${OFILES}
 
 fclean : clean
-	@rm -f $(NAME)
+	@rm ${NAME}
 
 re : fclean all
 
-text :
-	@echo " ${GREEN} $${CUB}"
-
-.PHONY : clean fclean re
+bonus : all
