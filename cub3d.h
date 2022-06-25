@@ -18,8 +18,12 @@
 # include <string.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
+# include "minilibx_opengl_20191021/mlx.h"
 
 # define BUFFER_SIZE 1
+#define X_AXIS 800
+#define Y_AXIS 600
 
 typedef struct s_color {
 	int	r;
@@ -45,6 +49,30 @@ typedef struct s_map {
 	t_color	f;
 	t_color	c;
 }	t_map;
+
+typedef struct mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	double	xmin;
+	double	xmax;
+	double	ymin;
+	double	ymax;
+	double	jx;
+	double	jy;
+	int		x;
+	int		y;
+}	t_mlx;
+
+typedef struct images
+{
+	void	*mlx;
+	void	*win;
+	void	*image;
+	void	*path;
+	int		width;
+	int		height;
+}	t_img;
 
 //-------------------stor map :
 void	get_map(char *s, t_map *tab);
