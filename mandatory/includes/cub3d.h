@@ -45,6 +45,7 @@ typedef struct s_map {
 	int		s;
 	int		e;
 	int		n;
+	int 	*position;
 
 	t_color	f;
 	t_color	c;

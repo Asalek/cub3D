@@ -23,6 +23,7 @@ void	ft_init(t_map *map)
 	map->s = 0;
 	map->n = 0;
 	map->e = 0;
+	map->position = malloc(sizeof (int) * 2);
 }
 
 int	arg_chek(int ac, char **av)
@@ -62,10 +63,19 @@ int	main(int ac, char **av)
 		printf("%s\n", map.south);
 		printf("%s\n", map.west);
 		printf("%s\n", map.east);
-		printf("%d\n", map.c.b);
-		printf("%d\n", map.f.b);
-		for (int index; index < map.colomn; index++)
+		printf("%d,%d,%d\n", map.c.r,map.c.g,map.c.b);
+		printf("%d,%d,%d\n", map.f.r,map.f.g,map.f.b);
+		printf("%d\n", map.position[0]);
+		printf("%d\n", map.position[1]);
+		int index =  0; 
+		while (index < map.ln) 
+		{
 			printf("%s\n", map.map[index]);
+			index++;
+		}
+		printf("%d\n", index);
+		printf("%d\n", map.colomn);
+		printf("%d\n", map.ln);
 	return (0);
 }
 

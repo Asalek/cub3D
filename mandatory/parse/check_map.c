@@ -63,6 +63,8 @@ void	ft_conditions_check(t_map *map, int i, int j)
 	else if (map->map[i][j] == 'S' || map->map[i][j] == 'N' \
 		|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 	{
+		map->position[0] = i;
+		map->position[1] = j;
 		if (i == 0 || i == map->ln - 1)
 			error_map(3);
 		else if ((map->map[i - 1][j] != '1' && map->map[i - 1][j] != '0') \

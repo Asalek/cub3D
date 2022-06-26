@@ -2,10 +2,8 @@ NO ./textures/wolf/mossy.xpm
 SO ./textures/wolf/purplestone.xpm
 EA ./textures/wolf/colorstone.xpm
 WE ./textures/wolf/greystone.xpm
-
 C 115,194,251
 F 167,166,157
-
 1111111111111111111111111
 1000000000000000100000001
 1000000000000000100000001                                               
