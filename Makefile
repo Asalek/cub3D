@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = cub3d
 UNAME = $(shell uname -s)
 
-CFILES = ./mandatory/parse/main.c \
+CFILES = main.c \
 	./mandatory/tools/tools_00.c \
 	./mandatory/tools/tools_01.c \
 	./mandatory/parse/get_map.c \
@@ -15,12 +15,10 @@ CFILES = ./mandatory/parse/main.c \
 OFILES = $(CFILES:.c=.o)
 
 ifeq ($(UNAME), Darwin)
-MLXFLAGS =  -O3 -framework OpenGL -framework AppKit -lz minilibx_opengl_20191021/libmlx.a
-# -lmlx
+	MLXFLAGS =  -O3 -lmlx -framework OpenGL -framework AppKit -lz minilibx_opengl_20191021/libmlx.a
 endif
 ifeq ($(UNAME), Linux)
-	MLXFLAGS = -lm
-# -lmlx -lXext -lX1
+	MLXFLAGS = -lmlx -lXext -lX1
 endif
 
 all : $(NAME)
@@ -28,7 +26,7 @@ all : $(NAME)
 $(NAME) : $(OFILES)
 	@${CC} $^ -o $@ ${MLXFLAGS}
 
-$(SRC)/%.o: $(SRC)/%.c include/%.h
+%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :

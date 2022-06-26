@@ -24,6 +24,7 @@
 # define BUFFER_SIZE 1
 #define X_AXIS 800
 #define Y_AXIS 600
+#define PI 3.1415926535
 
 typedef struct s_color {
 	int	r;
