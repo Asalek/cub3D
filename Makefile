@@ -15,7 +15,7 @@ CFILES = main.c \
 OFILES = $(CFILES:.c=.o)
 
 ifeq ($(UNAME), Darwin)
-	MLXFLAGS =  -O3 -lmlx -framework OpenGL -framework AppKit -lz minilibx_opengl_20191021/libmlx.a
+	MLXFLAGS =  -O3 -lmlx -framework OpenGL -framework AppKit -lz mandatory/minilibx_opengl_20191021/libmlx.a
 endif
 ifeq ($(UNAME), Linux)
 	MLXFLAGS = -lmlx -lXext -lX1
