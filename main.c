@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/21 13:31:53 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:17:28 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,39 @@ void	player_direction(t_structs *all)
 	}
 }
 
+void	window_init(t_structs *all)
+{
+	t_mlx	s;
+	int	i;
+
+	i = 0;
+	all->ray->tab = malloc(X_AXIS * sizeof(unsigned int));
+	if (!all->ray->tab[i])
+	{
+		printf("Failed to allocat the main Table");
+		exit(0);
+	}
+	while (i < X_AXIS)
+	{
+		all->ray->tab[i] = malloc(Y_AXIS * sizeof(unsigned int));
+		if (!all->ray->tab[i])
+		{
+			printf("Failed to allocat table number : %d", i);
+			exit(0);
+		}
+		i++;
+	}
+	s.mlx_ptr = mlx_init();
+	s.win_ptr = mlx_new_window (s.mlx_ptr, X_AXIS, Y_AXIS, "Cub3D_Asalek_Yelgharo");
+	// texture()
+	// drawONscreen()
+	// mlx_hook(s.win_ptr, 33, 1L << 17, ft_exit, recup);
+	mlx_loop(s.mlx_ptr);
+}
+
 int	main(int ac, char **av)
 {
 	t_map	map;
-	t_mlx	s;
 	t_ray	raycast;
 	t_structs	all;
 
@@ -127,17 +156,12 @@ int	main(int ac, char **av)
 	all.map = map.map;
 	all.ray = &raycast;
 	player_direction(&all);
+	window_init(&all);
 	int i = 0;
 	while (all.map[i])
 	{
 		printf("%s\n", all.map[i]);
 		i++;
 	}
-	s.mlx_ptr = mlx_init();
-	s.win_ptr = mlx_new_window (s.mlx_ptr, X_AXIS, Y_AXIS, "Cub3D_Asalek_Yelgharo");
-	// texture()
-	// drawONscreen()
-	// mlx_hook(s.win_ptr, 33, 1L << 17, ft_exit, recup);
-	mlx_loop(s.mlx_ptr);
 	return (0);
 }
