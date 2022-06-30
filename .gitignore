@@ -2,3 +2,4 @@
 .vscode
 *.out
 cub3d
+.DS_Store
