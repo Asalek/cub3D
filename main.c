@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/30 18:17:28 by asalek           ###   ########.fr       */
+/*   Updated: 2022/06/30 18:50:58 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	window_init(t_structs *all)
 
 	i = 0;
 	all->ray->tab = malloc(X_AXIS * sizeof(unsigned int));
-	if (!all->ray->tab[i])
+	if (!all->ray->tab)
 	{
 		printf("Failed to allocat the main Table");
 		exit(0);
