@@ -1,0 +1,13 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/asalek/Desktop/asalek'
+cc -Wall -Wextra -Werror -c main.c -o main.o
+cc -Wall -Wextra -Werror -c mandatory/tools/tools_00.c -o mandatory/tools/tools_00.o
+cc -Wall -Wextra -Werror -c mandatory/tools/tools_01.c -o mandatory/tools/tools_01.o
+cc -Wall -Wextra -Werror -c mandatory/parse/get_map.c -o mandatory/parse/get_map.o
+cc -Wall -Wextra -Werror -c mandatory/tools/get_next_line.c -o mandatory/tools/get_next_line.o
+cc -Wall -Wextra -Werror -c mandatory/parse/map_element_00.c -o mandatory/parse/map_element_00.o
+cc -Wall -Wextra -Werror -c mandatory/parse/check_map.c -o mandatory/parse/check_map.o
+cc -Wall -Wextra -Werror -c mandatory/parse/check_color.c -o mandatory/parse/check_color.o
+cc main.o mandatory/tools/tools_00.o mandatory/tools/tools_01.o mandatory/parse/get_map.o mandatory/tools/get_next_line.o mandatory/parse/map_element_00.o mandatory/parse/check_map.o mandatory/parse/check_color.o -o cub3d -O3 -lmlx -framework OpenGL -framework AppKit -lz mandatory/minilibx_opengl_20191021/libmlx.a
+make: Leaving directory `/Users/asalek/Desktop/asalek'
+ 
