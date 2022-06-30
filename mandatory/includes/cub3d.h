@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/20 11:56:49 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:56:47 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 #define X_AXIS 800
 #define Y_AXIS 600
 #define PI 3.1415926535
+# define IMG_1 "mandatory/walls_floor/brick.xpm"
+# define IMG_2 "mandatory/walls_floor/brick.xpm"
+# define IMG_3 "mandatory/walls_floor/stone_floor.xpm"
+# define IMG_4 "mandatory/walls_floor/stone_floor.xpm"
 
 typedef struct s_color {
 	int	r;
@@ -52,7 +56,7 @@ typedef struct s_map {
 	t_color	c;
 }	t_map;
 
-typedef struct mlx
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -66,14 +70,13 @@ typedef struct mlx
 	int		y;
 }	t_mlx;
 
-typedef struct images
+typedef struct	s_images
 {
-	void	*mlx;
-	void	*win;
-	void	*image;
-	void	*path;
-	int		width;
-	int		height;
+	void	*img;
+	char	*addr;
+	int		bp;
+	int		ll;
+	int		e;
 }	t_img;
 
 typedef struct	s_ray
@@ -103,6 +106,7 @@ typedef struct	s_ray
 	int		drawend; //position de fin ou il faut dessiner
 	int		x; //permet de parcourir tous les rayons
 	unsigned int	**tab;
+	t_img	*image[4];
 }					t_ray;
 
 typedef struct  s_assets {
@@ -118,6 +122,7 @@ typedef struct all_structs
 	t_mlx	*mlx;
 	char	**map;
 	t_ray	*ray;
+	t_img	*img;
 }	t_structs;
 
 
