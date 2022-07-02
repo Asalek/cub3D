@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/30 20:51:43 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/02 16:49:12 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,10 @@ void	player_direction(t_structs *all)
 
 void	texture(t_structs *all)
 {
-	t_img	t;
 	int		wid;
 	int		hig;
 	t_img	img[4];
 
-	all->img = &t;
 	puts("AA");
 	img[0].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_1, &wid, &hig);
 	puts("BB");
@@ -127,23 +125,28 @@ void	texture(t_structs *all)
 	img[1].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_2, &wid, &hig);
 	if (!img[1].img)
 		return (printf("assets not set"), exit(0));
-	img[1].addr = mlx_get_data_addr(img[1].img, &img[1].bp, &img[1].ll, &img[1].e);
+	img[1].addr = mlx_get_data_addr(img[1].img, &img[1].bp, &img[1].ll, &img[1].e);	
+	// img[2].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_3, &wid, &hig);
+	// if (!img[2].img)
+	// 	return (printf("assets not set"), exit(0));
+	// img[2].addr = mlx_get_data_addr(img[2].img, &img[2].bp, &img[2].ll, &img[2].e);
 	
-	img[2].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_3, &wid, &hig);
-	if (!img[2].img)
-		return (printf("assets not set"), exit(0));
-	img[2].addr = mlx_get_data_addr(img[2].img, &img[2].bp, &img[2].ll, &img[2].e);
+	// img[3].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_4, &wid, &hig);
+	// if (!img[3].img)
+	// 	return (printf("assets not set"), exit(0));
+	// img[3].addr = mlx_get_data_addr(img[3].img, &img[3].bp, &img[3].ll, &img[3].e);
 	
-	img[3].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_4, &wid, &hig);
-	if (!img[3].img)
-		return (printf("assets not set"), exit(0));
-	img[3].addr = mlx_get_data_addr(img[3].img, &img[3].bp, &img[3].ll, &img[3].e);
-	
+	// img[4].img = mlx_xpm_file_to_image(all->mlx->mlx_ptr, IMG_4, &wid, &hig);
+	// if (!img[4].img)
+	// 	return (printf("assets not set"), exit(0));
+	// img[4].addr = mlx_get_data_addr(img[4].img, &img[4].bp, &img[4].ll, &img[4].e);
+	all->img = img;
 }
 
 void	window_init(t_structs *all)
 {
 	t_mlx	s;
+	// t_asset asset;
 	int	i;
 
 	i = 0;
@@ -165,7 +168,13 @@ void	window_init(t_structs *all)
 	}
 	s.mlx_ptr = mlx_init();
 	s.win_ptr = mlx_new_window (s.mlx_ptr, X_AXIS, Y_AXIS, "Cub3D_Asalek_Yelgharo");
+	all->mlx = &s;
+	// asset.img = mlx_new_image(s.mlx_ptr, X_AXIS, Y_AXIS);
+	// asset.addr = mlx_get_data_addr(asset.img, &asset.bits_per_pixel, &asset.line_length, &asset.endian);
+	// asset.addr[y * recup->asset.line_length / 4 + x] = color;
+	// my_mlx_pixel_put(&asset, 50, 50, 255);
 	texture(all);
+	mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, all->img[0].img, 0, 0); //put image to window
 	// drawONscreen()
 	// mlx_hook(s.win_ptr, 33, 1L << 17, ft_exit, recup);
 	mlx_loop(s.mlx_ptr);
@@ -195,5 +204,5 @@ int	main(int ac, char **av)
 		printf("%s\n", all.map[i]);
 		i++;
 	}
-	return (0);
+	return (0);	
 }

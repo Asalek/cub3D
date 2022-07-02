@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/30 20:56:47 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/01 15:39:58 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 #define Y_AXIS 600
 #define PI 3.1415926535
 # define IMG_1 "mandatory/walls_floor/brick.xpm"
-# define IMG_2 "mandatory/walls_floor/brick.xpm"
-# define IMG_3 "mandatory/walls_floor/stone_floor.xpm"
+# define IMG_2 "mandatory/walls_floor/stone_floor.xpm"
+# define IMG_3 "mandatory/walls_floor/brick.xpm"
 # define IMG_4 "mandatory/walls_floor/stone_floor.xpm"
 
 typedef struct s_color {
