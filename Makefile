@@ -10,7 +10,10 @@ CFILES = main.c \
 	./mandatory/tools/get_next_line.c \
 	./mandatory/parse/map_element_00.c \
 	./mandatory/parse/check_map.c \
-	./mandatory/parse/check_color.c
+	./mandatory/parse/check_color.c \
+	./mandatory/rayCasting/ray_calculation.c \
+	./mandatory/rayCasting/player_direction.c \
+	./mandatory/rayCasting/screen.c \
 
 OFILES = $(CFILES:.c=.o)
 
@@ -24,7 +27,7 @@ endif
 all : $(NAME)
 
 $(NAME) : $(OFILES)
-	@${CC} $^ -o $@ ${MLXFLAGS}
+	@${CC} -fsanitize=address $^ -o $@ ${MLXFLAGS}
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

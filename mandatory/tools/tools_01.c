@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_01.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 06:02:14 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/14 06:18:30 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:51:02 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-int	ft_strchr(char *s)
+int	ft_strchrr(char *s)
 {
 	int		i;
 

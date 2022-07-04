@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 06:04:57 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/14 06:21:31 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:09:23 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_read(int fd, char *out)
 
 	if (!out)
 		out = ft_strdup("");
-	while (!ft_strchr(out))
+	while (!ft_strchrr(out))
 	{
 		str = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		i = read(fd, str, BUFFER_SIZE);
