@@ -14,7 +14,8 @@ CFILES = main.c \
 	./mandatory/rayCasting/ray_calculation.c \
 	./mandatory/rayCasting/player_direction.c \
 	./mandatory/rayCasting/screen.c \
-	./mandatory/rayCasting/movement_rotate.c
+	./mandatory/rayCasting/movement_rotate.c \
+	./mandatory/rayCasting/hook_keys.c
 
 
 OFILES = $(CFILES:.c=.o)
@@ -38,7 +39,7 @@ clean :
 	@rm -rf ${OFILES}
 
 fclean : clean
-	@rm ${NAME}
+	@rm -rf ${NAME}
 
 re : fclean all
 

@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:23:44 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/05 19:26:59 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 20:13:00 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	rotate_player(t_all *t)
 {
-	t->mlx->analog.a = 0;
-	t->mlx->analog.s = 0;
-	t->mlx->analog.d = 0;
-	t->mlx->analog.w = 0;
+	int	i;
+
+	i = t->mlx->x;
 	return ;
 }
 

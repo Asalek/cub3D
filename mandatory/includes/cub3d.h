@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/05 19:29:16 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 20:15:01 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+// # include <MMsystem.h>
 # include <fcntl.h>
 # include <math.h>
 # include "../minilibx_opengl_20191021/mlx.h"
@@ -178,6 +179,8 @@ void			player_direction(t_ray *ray, char **map);
 void			texture_getter(void *mlx, t_ray *ray, t_map parsing);
 unsigned int	img_color(t_img *t, int x, int y);
 int				player_movement(t_all *analog);
+int				button_press(int key, t_all *al);
+int				button_release(int key, t_all *al);
 void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx \
 				, char **map, int x);
 
