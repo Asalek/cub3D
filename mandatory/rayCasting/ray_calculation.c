@@ -11,13 +11,13 @@ void	dig_difftial_ans_paint(t_ray *ray,t_mlx *mlx,char **map,int x)
 	// if (ray->dirx == 0)
 	// 	ray->deltadistx = 1e30;
 	// else
-	ray->deltadistx = fabs(1 / ray->raydirx);
+	//ray->deltadistx = fabs(1 / ray->raydirx);
 	// if (ray->diry == 0)
 	// 	ray->deltadisty = 1e30;
 	// else
-		ray->deltadisty = fabs(1 / ray->raydiry);
-	// ray->deltadistx = sqrt(1 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));// ray to the second X encounter with
-	// ray->deltadisty = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));// ray to the second Y encounter with
+	//ray->deltadisty = fabs(1 / ray->raydiry);
+	ray->deltadistx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));// ray to the second X encounter with
+	ray->deltadisty = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));// ray to the second Y encounter with
 	ray->hit = 0; //was there a wall hit?
 	calc_step_init_sidedist(ray, mlx, map);
 }
