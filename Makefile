@@ -14,6 +14,8 @@ CFILES = main.c \
 	./mandatory/rayCasting/ray_calculation.c \
 	./mandatory/rayCasting/player_direction.c \
 	./mandatory/rayCasting/screen.c \
+	./mandatory/rayCasting/movement_rotate.c
+
 
 OFILES = $(CFILES:.c=.o)
 
@@ -27,7 +29,7 @@ endif
 all : $(NAME)
 
 $(NAME) : $(OFILES)
-	@${CC} -fsanitize=address $^ -o $@ ${MLXFLAGS}
+	@${CC} $^ -o $@ ${MLXFLAGS}
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

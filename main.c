@@ -6,13 +6,13 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/04 23:53:26 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 16:20:24 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mandatory/includes/cub3d.h"
 
-unsigned int	get_color(t_img *t, int x, int y)
+unsigned int	img_color(t_img *t, int x, int y)
 {
 	char	*s_d;
 	int		p_d;

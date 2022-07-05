@@ -115,7 +115,7 @@ void	walls_colors(t_ray *r, t_mlx *mlx)
 	{
 		r->texy = (int)r->tex_position & (T_H - 1);
 		r->tex_position += r->steps;
-		r->color = get_color(&r->img[r->img_n], r->texx, r->texy);
+		r->color = img_color(&r->img[r->img_n], r->texx, r->texy);
 		r->tab[i][mlx->x] = r->color;
 		i++;
 	}

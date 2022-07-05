@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/04 23:22:16 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 18:16:50 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@
 # define X_AXIS 1800
 # define Y_AXIS 800
 # define PI 3.1415926535
+# define T_W 64
 # define COS_A 193.2
 # define SIN_A 16.93
-# define T_W 64
 # define T_H 64
+# define SPEED 0.06
 # define IMG_1 "mandatory/walls_floor/colorstone.xpm"
 # define IMG_2 "mandatory/walls_floor/eagle.xpm"
 # define IMG_3 "mandatory/walls_floor/purplestone.xpm"
@@ -106,8 +107,16 @@ typedef struct s_ray
 	double			steps; //player steps
 	double			wallx; //wall x position
 	double			tex_position;
-	t_img		img[4];
+	t_img		img[6];
 }	t_ray;
+
+typedef struct s_analog
+{
+	int	a;
+	int	w;
+	int	s;
+	int	d;
+}	t_analog;
 
 
 typedef struct s_mlx
@@ -120,6 +129,7 @@ typedef struct s_mlx
 	int		size_line;
 	int		endian;
 	int		x;
+	t_analog	analog;
 }	t_mlx;
 
 typedef struct s_all
@@ -171,16 +181,8 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map);
 void	window_creation(t_all *all, t_ray *ray, t_map map);
 void	player_direction(t_ray *ray, char **map);
 void	texture_getter(void *mlx, t_ray *ray, t_map parsing);
+unsigned int	img_color(t_img *t, int x, int y);
+int	player_movement(t_all *analog);
 
-
-
-void			initial_color(t_ray *ray);
-void			initial_color_2(t_mlx *mlx, t_ray *ray);
-void			init_all(t_all *all, t_map parsing);
-
-//-------------------------------- GRAPHICS --------------------------------/
-void			print_ray(t_ray *ray);
-unsigned int	get_color(t_img *t, int x, int y);
-void			draw_screen(t_ray *ray, t_mlx *mlx, char **map);
 
 #endif

@@ -6,11 +6,39 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/04 23:47:19 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 17:38:28 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	ft_exit(int	key, t_mlx *mlx)
+{
+	int	i;
+
+	i = mlx->x;
+	if (key == 53)
+		exit(0);
+	if (key == 0)
+		mlx->analog.a = 1;
+	else
+		mlx->analog.a = 0;
+	if (key == 1)
+		mlx->analog.s = 1;
+	else
+		mlx->analog.s = 0;
+	if (key == 2)
+		mlx->analog.d = 1;
+	else
+		mlx->analog.d = 0;
+	if (key == 13)
+		mlx->analog.w = 1;
+	else
+		mlx->analog.w = 0;
+	printf("a : %d     s: %d     d: %d     w: %d\n", mlx->analog.a,\
+	mlx->analog.s, mlx->analog.d, mlx->analog.w);
+	return (0);
+}
 
 void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
 {
@@ -70,10 +98,13 @@ void	window_creation(t_all *all, t_ray *ray, t_map p_map)
 		}
 	}
 	all->mlx = &s;
+	all->ray = ray;
 	s.mlx = mlx_init();
 	s.win = mlx_new_window (s.mlx, X_AXIS, Y_AXIS, "Cub3D_Asalek_Yelgharo");
 	texture_getter(s.mlx, ray, p_map);
 	paint_on_screen(ray, &s, all->map);
+	mlx_key_hook(s.win, ft_exit, &s);
+	mlx_loop_hook(s.mlx, player_movement, all);
 	mlx_loop(s.mlx);
 }
 
