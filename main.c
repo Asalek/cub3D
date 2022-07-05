@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/05 16:20:24 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 19:08:35 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	arg_chek(int ac, char **av)
 	return (1);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_map	map;
@@ -75,5 +74,5 @@ int	main(int ac, char **av)
 	player_direction(&ray, map.map);
 	all.map = map.map;
 	window_creation(&all, &ray, map);
-	return (0);	
+	return (0);
 }
