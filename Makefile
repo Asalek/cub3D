@@ -30,7 +30,7 @@ endif
 all : $(NAME)
 
 $(NAME) : $(OFILES)
-	@${CC} $^ -o $@ ${MLXFLAGS}
+	@${CC} -fsanitize=address $^ -o $@ ${MLXFLAGS}
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

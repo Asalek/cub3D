@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:21:15 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/06/21 13:20:29 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:52:48 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	error_map(int num)
 void	ft_conditions_check(t_map *map, int i, int j)
 {
 	if (map->map[i][j] != '0' && map->map[i][j] != '1' \
+		&& map->map[i][j] != '2' && map->map[i][j] != '3'\
 		&& map->map[i][j] != 'N' && map->map[i][j] != 'S' \
 		&& map->map[i][j] != 'W' && map->map[i][j] != 'E' \
 		&& map->map[i][j] != ' ')

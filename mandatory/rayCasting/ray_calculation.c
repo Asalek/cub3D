@@ -11,13 +11,13 @@ void	dig_difftial_ans_paint(t_ray *ray,t_mlx *mlx,char **map,int x)
 	// if (ray->dirx == 0)
 	// 	ray->deltadistx = 1e30;
 	// else
-	//ray->deltadistx = fabs(1 / ray->raydirx);
+	ray->deltadistx = fabs(1 / ray->raydirx);
 	// if (ray->diry == 0)
 	// 	ray->deltadisty = 1e30;
 	// else
-	//ray->deltadisty = fabs(1 / ray->raydiry);
-	ray->deltadistx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));// ray to the second X encounter with
-	ray->deltadisty = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));// ray to the second Y encounter with
+	ray->deltadisty = fabs(1 / ray->raydiry);
+	// ray->deltadistx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));// ray to the second X encounter with
+	// ray->deltadisty = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));// ray to the second Y encounter with
 	ray->hit = 0; //was there a wall hit?
 	calc_step_init_sidedist(ray, mlx, map);
 }
@@ -69,8 +69,15 @@ void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 				r->img_n = 2;
 			r->side = 1;
 		}
-		if (map[r->mapx][r->mapy] == '1') //Check if ray has hit a wall
+		if (map[r->mapx][r->mapy] == '1' || map[r->mapx][r->mapy] == '2'
+			|| map[r->mapx][r->mapy] == '3' || map[r->mapx][r->mapy] == '4') //Check if ray has hit a wall or door
+		{
 			r->hit = 1;
+			if (map[r->mapx][r->mapy] == '2')
+				r->img_n = 4;
+			if (map[r->mapx][r->mapy] == '3')
+				r->img_n = 5;
+		}
 	}
 	wall_high(r, mlx);
 }
