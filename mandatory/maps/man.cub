@@ -1,11 +1,9 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-
+NO ./mandatory/paths/path_to_the_north_texture
+SO ./mandatory/paths/path_to_the_south_texture
+WE ./mandatory/paths/path_to_the_west_texture
+EA ./mandatory/paths/path_to_the_east_texture
 F 220,100,5
 C 200,110,10
-
 111111111111111
 100000100000001
 100S011111111111111111111
@@ -53,7 +51,7 @@ C 200,110,10
   1000000000001    100000000001
   1000000010001    100000000001
   1111011110001    100000000001
-    10001 10101    100000000001
+    10001010101    100000000001
     10001110111    100000000001
     10000000001    100000000001
     11111100001    111111011111
@@ -61,7 +59,7 @@ C 200,110,10
           10001        10001
            10001       10101
             10001      11111
-             1000
+             10001
               10001
                10001
                 10001111111111111111111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/05 19:20:25 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/05 19:29:16 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,6 @@ int				ft_atoi(const char *str);
 
 int				ft_error(char *str, int exit_status);
 char			*ft_strchr(char *s, int c);
-void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx \
-				, char **map, int x);
 void			calc_step_init_sidedist(t_ray *r, t_mlx *mlx, char **map);
 void			walls_hits(t_ray *r, t_mlx *mlx, char **map);
 void			wall_high(t_ray *r, t_mlx *mlx);
@@ -180,5 +178,7 @@ void			player_direction(t_ray *ray, char **map);
 void			texture_getter(void *mlx, t_ray *ray, t_map parsing);
 unsigned int	img_color(t_img *t, int x, int y);
 int				player_movement(t_all *analog);
+void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx \
+				, char **map, int x);
 
 #endif
