@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_calculation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
+/*   Updated: 2022/07/06 19:11:10 by asalek           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	dig_difftial_ans_paint(t_ray *ray,t_mlx *mlx,char **map,int x)
@@ -62,9 +74,9 @@ void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 		}
 		else
 		{
+			r->img_n = 3;
 			r->sidedisty += r->deltadisty;
 			r->mapy += r->stepy;
-			r->img_n = 3;
 			if (r->raydiry > 0)
 				r->img_n = 2;
 			r->side = 1;
