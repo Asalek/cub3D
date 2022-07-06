@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/05 20:54:52 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/06 18:15:14 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ unsigned int	img_color(t_img *t, int x, int y)
 {
 	char	*s_d;
 	int		p_d;
-	unsigned int	color;
+	uint32_t	color;
 	
 	p_d = y * t->sl + x * 4;
 	s_d = t->addr + p_d;
@@ -29,7 +29,7 @@ unsigned int	img_color(t_img *t, int x, int y)
 	if (color)
 		return (color);
 	else
-		return ((unsigned int)255255255);
+		return ((unsigned int)4732952);
 	
 }
 
