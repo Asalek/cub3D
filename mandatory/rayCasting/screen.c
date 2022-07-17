@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/17 16:47:31 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/17 17:13:06 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	window_creation(t_all *all, t_ray *ray, t_map p_map)
 	all->mlx->analog.w = 0;
 	mlx_hook(s.win, 02, 1L<<0, button_press, all);
 	mlx_hook(s.win, 03, 1L<<1, button_release, all);
+	mlx_hook(s.win, 17, 1L<<17, esc, all);
 	mlx_loop_hook(s.mlx, player_movement, all);
 	mlx_loop(s.mlx);
 }

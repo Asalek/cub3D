@@ -6,15 +6,21 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:15:31 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/17 16:46:40 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/17 17:15:08 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int	esc(int key)
+{
+	(void)key;
+	
+	return (exit(0), 0);
+}
+
 int	button_press(int key, t_all *al)
 {
-	printf("%d", key);
 	if (key == 53)
 		exit(0);
 	else if (key == 0)
