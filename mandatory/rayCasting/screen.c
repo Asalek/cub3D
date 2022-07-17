@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/06 19:10:55 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/17 16:47:31 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	window_creation(t_all *all, t_ray *ray, t_map p_map)
 	s.win = mlx_new_window (s.mlx, X_AXIS, Y_AXIS, "Cub3D_Asalek_Yelgharo");
 	texture_getter(s.mlx, ray, p_map);
 	paint_on_screen(ray, &s, all->map);
-	// mlx_key_hook(s.win, ft_exit, &s);
+	all->mlx->analog.w = 0;
 	mlx_hook(s.win, 02, 1L<<0, button_press, all);
 	mlx_hook(s.win, 03, 1L<<1, button_release, all);
 	mlx_loop_hook(s.mlx, player_movement, all);
