@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:23:44 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/05 22:55:33 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/17 16:38:05 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,34 @@
 
 void	rotate_player(t_all *t)
 {
-	int	i;
-
-	i = t->mlx->x;
-	return ;
+	if (t->mlx->analog.right_arrow == 1)
+	{
+		double oldDirX = t->ray->dirx;
+		double oldPlaneX = t->ray->planex;
+		
+		t->ray->dirx = t->ray->dirx * cos(-ROTATE_SPEED)\
+			- t->ray->diry * sin(-ROTATE_SPEED);
+		t->ray->diry = oldDirX * sin(-ROTATE_SPEED)\
+			+ t->ray->diry * cos(-ROTATE_SPEED);
+		t->ray->planex = t->ray->planex * cos(-ROTATE_SPEED)\
+			- t->ray->planey * sin(-ROTATE_SPEED);
+		t->ray->planey = oldPlaneX * sin(-ROTATE_SPEED)\
+			+ t->ray->planey * cos(-ROTATE_SPEED);
+	}
+	if (t->mlx->analog.left_arrow == 1)
+	{
+		double oldDirX = t->ray->dirx;
+		double oldPlaneX = t->ray->planex;
+		
+		t->ray->dirx = t->ray->dirx * cos(ROTATE_SPEED)\
+			- t->ray->diry * sin(ROTATE_SPEED);
+		t->ray->diry = oldDirX * sin(ROTATE_SPEED)\
+			+ t->ray->diry * cos(ROTATE_SPEED);
+		t->ray->planex = t->ray->planex * cos(ROTATE_SPEED)\
+			- t->ray->planey * sin(ROTATE_SPEED);
+		t->ray->planey = oldPlaneX * sin(ROTATE_SPEED)\
+			+ t->ray->planey * cos(ROTATE_SPEED);
+	}
 }
 
 void	s_key(t_all *t)

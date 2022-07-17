@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/05 22:49:02 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/17 16:34:48 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define SIN_A 16.93
 # define T_H 64
 # define SPEED 0.16
+# define ROTATE_SPEED 0.06
 # define IMG_1 "mandatory/walls_floor/colorstone.xpm"
 # define IMG_2 "mandatory/walls_floor/eagle.xpm"
 # define IMG_3 "mandatory/walls_floor/purplestone.xpm"
@@ -117,6 +118,8 @@ typedef struct s_analog
 	int	w;
 	int	s;
 	int	d;
+	int	left_arrow;
+	int	right_arrow;
 }	t_analog;
 
 typedef struct s_mlx
