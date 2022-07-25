@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:15:31 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/17 17:15:08 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:32:13 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,17 @@ int	button_release(int key, t_all *al)
 		al->mlx->analog.right_arrow = 0;
 	if (key == 124)
 		al->mlx->analog.left_arrow = 0;
+	return (0);
+}
+
+int	mouse(int x, int y, t_all *t)
+{
+	static int	old_x;
+
+	(void)y;
+	mlx_clear_window(t->mlx->mlx, t->mlx->win);
+	rotate_player_with_mouse(x, old_x, t);
+	paint_on_screen(t->ray, t->mlx, t->map);
+	old_x = x;
 	return (0);
 }

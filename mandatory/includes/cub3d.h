@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/07/17 17:13:28 by asalek           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:21:19 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,8 @@ int				player_movement(t_all *analog);
 int				button_press(int key, t_all *al);
 int				button_release(int key, t_all *al);
 int				esc(int key);
+int				mouse(int x, int y, t_all *all);
+void			rotate_player_with_mouse(int x, int old_x, t_all *t);
 void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx \
 				, char **map, int x);
 
