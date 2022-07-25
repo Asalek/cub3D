@@ -8,7 +8,7 @@ make sure that you already installed the <strong>mlx</strong> library if not che
 
 Then Copy Paste bellow commands on your terminal ::
 
-bash```
+```bash
 git clone https://github.com/Asalek/cub3D.git
 cd cub3D
 make
