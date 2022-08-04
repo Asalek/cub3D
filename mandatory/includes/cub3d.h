@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/04 15:26:31 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/04 18:40:06 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define IMG_5 "mandatory/walls_floor/door.xpm"
 # define IMG_6 "mandatory/walls_floor/door_open.xpm"
 # define IMG_7 "mandatory/walls_floor/pillar.xpm"
+# define IMG_8 "mandatory/walls_floor/asalek.xpm"
 
 typedef struct s_color {
 	int	r;
@@ -109,7 +110,7 @@ typedef struct s_ray
 	double			steps; //player steps
 	double			wallx; //wall x position
 	double			tex_position;
-	t_img			img[7];
+	t_img			img[8];
 }	t_ray;
 
 typedef struct s_analog

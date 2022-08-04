@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/02 15:29:51 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:08:06 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void	texture_getter(void *mlx, t_ray *ray, t_map parsing)
 	get_image(mlx, &ray->img[4], IMG_5);
 	get_image(mlx, &ray->img[5], IMG_6);
 	get_image(mlx, &ray->img[6], IMG_7);
+	get_image(mlx, &ray->img[7], IMG_8);
 }

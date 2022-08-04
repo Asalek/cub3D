@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/02 13:05:13 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:10:08 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 void	wall_high(t_ray *r, t_mlx *mlx)
 {
 	if (r->side == 0)
-		r->perpwalldist = r->sidedistx - r->deltadistx;
+		r->perpwalldist = r->sidedistx - r->deltadistx;  //how far i'am for the wall
 	else
 		r->perpwalldist = r->sidedisty - r->deltadisty;
 	r->line_height = (int)(Y_AXIS / r->perpwalldist);
-	r->drawstart = -r->line_height / 2 + Y_AXIS / 2;
+	r->drawstart = -r->line_height / 2 + Y_AXIS / 2; //Y_AXIS / 2 half of screen for wall other C or F
 	if (r->drawstart < 0)
 		r->drawstart = 0;
 	r->drawend = r->line_height / 2 + Y_AXIS / 2;
@@ -141,3 +141,4 @@ void	walls_colors(t_ray *r, t_mlx *mlx)
 	while (i < Y_AXIS)
 		r->tab[i++][mlx->x] = r->f_color;
 }
+//ToDo: set the color of the wall based on the clor from the texture
