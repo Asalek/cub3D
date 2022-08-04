@@ -6,11 +6,53 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:00:24 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/04 23:01:09 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/02 13:57:39 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	set_dir_plane_w(t_ray *ray, char p)
+{
+	if (p == 'W')
+	{
+		ray->dirx = 0;
+		ray->planey = 0;
+		ray->diry = -1;
+		ray->planex = -0.66;
+		return (1);
+	}
+	return (0);
+}
+
+int	set_dir_plane(t_ray *ray, char p)
+{
+	if (p == 'S')
+	{
+		ray->dirx = 1;
+		ray->diry = 0;
+		ray->planex = 0;
+		ray->planey = -0.66;
+		return (1);
+	}
+	else if (p == 'N')
+	{
+		ray->dirx = -1;
+		ray->diry = 0;
+		ray->planex = 0;
+		ray->planey = 0.66;
+		return (1);
+	}
+	else if (p == 'E')
+	{
+		ray->dirx = 0;
+		ray->diry = 1;
+		ray->planex = 0.66;
+		ray->planey = 0;
+		return (1);
+	}
+	return (set_dir_plane_w(ray, p));
+}
 
 void	player_direction(t_ray *ray, char **map)
 {
@@ -25,37 +67,12 @@ void	player_direction(t_ray *ray, char **map)
 		while (map[x][++y])
 		{
 			p = map[x][y];
-			if (p == 'N' || p == 'E' || p == 'W' || p == 'S')
+			if (set_dir_plane(ray, p) == 1)
 			{
 				ray->posx = x;
 				ray->posy = y;
 				map[x][y] = '0';
-				if (p == 'S' || p == 'N')
-				{
-					ray->dirx = 1;
-					ray->diry = 0;
-					ray->planex = 0;
-					ray->planey = -0.66;
-					if (p == 'N')
-					{
-						ray->dirx = -1;
-						ray->planey = 0.66;
-					}
-				}
-				if (p == 'W' || p == 'E')
-				{
-					ray->dirx = 0;
-					ray->diry = 1;
-					ray->planex = 0.66;
-					ray->planey = 0;
-					if (p == 'W')
-					{
-						ray->diry = -1;
-						ray->planex = -0.66;
-					}
-				}
 			}
 		}
 	}
 }
-
