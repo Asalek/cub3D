@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/09 16:18:38 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/12 18:54:52 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 void	dig_difftial_ans_paint(t_ray *ray,t_mlx *mlx,char **map,int x)
 {
+	double	camera_y_coordinate;
+
 	//calculate ray position and direction
 	ray->camera = 2 * x / (double)X_AXIS - 1; //x-coordinate in camera space
+	camera_y_coordinate = 2 * x / (double)Y_AXIS - 1;
 	ray->raydirx = ray->dirx + ray->planex * ray->camera;
 	ray->raydiry = ray->diry + ray->planey * ray->camera;
 	ray->mapx = (int)ray->posx;//which box of the map we're in
 	ray->mapy = (int)ray->posy;
-	// if (ray->dirx == 0)
-	// 	ray->deltadistx = 1e30;
-	// else
-	ray->deltadistx = fabs(1 / ray->raydirx);
-	// if (ray->diry == 0)
-	// 	ray->deltadisty = 1e30;
-	// else
-	ray->deltadisty = fabs(1 / ray->raydiry);
-	// ray->deltadistx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));// ray to the second X encounter with
-	// ray->deltadisty = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));// ray to the second Y encounter with
+	if (ray->raydirx != 0)
+		ray->deltadistx = fabs(1 / ray->raydirx);
+	else
+		ray->deltadistx = 7728;	//1e30
+	if (ray->raydiry != 0)
+		ray->deltadisty = fabs(1 / ray->raydiry);
+	else
+		ray->deltadisty = 7728;
 	calc_step_init_sidedist(ray, mlx, map);
 }
 
@@ -63,26 +64,25 @@ void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 	r->hit = 0; //was there a wall hit?
 	while (r->hit == 0)
 	{
-		if (r->sidedistx < r->sidedisty)
+		r->img_n = 1;
+		if (r->sidedistx < r->sidedisty) // loop that increments the ray with 1 square every time
 		{
-			r->img_n = 1;
 			r->sidedistx += r->deltadistx;
-			r->mapx += r->stepx;
+			r->mapx += r->stepx;//either it jumps a square in the x-direction (with stepX) or a square in the y-direction (with stepY)
+			r->side = 0; //wall in front or back
 			if (r->raydirx > 0)
 				r->img_n = 0;
-			r->side = 0;
 		}
 		else
 		{
 			r->img_n = 3;
 			r->sidedisty += r->deltadisty;
 			r->mapy += r->stepy;
+			r->side = 1;  //wall in right or left. sloped (3wj)
 			if (r->raydiry > 0)
 				r->img_n = 2;
-			r->side = 1;
 		}
-		if (map[r->mapx][r->mapy] == '1' || map[r->mapx][r->mapy] == '2'
-			|| map[r->mapx][r->mapy] == '3' || map[r->mapx][r->mapy] == '4') //Check if ray has hit a wall or door
+		if (map[r->mapx][r->mapy] != '0') //Check if ray has hit a wall or door
 		{
 			r->hit = 1;
 			if (map[r->mapx][r->mapy] == '2')
