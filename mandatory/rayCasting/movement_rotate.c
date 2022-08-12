@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:23:44 by asalek            #+#    #+#             */
-/*   Updated: 2022/07/25 14:25:25 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/09 22:57:34 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,16 @@ void	s_key(t_all *t)
 		[(int)(t->ray->posy - t->ray->diry * SPEED)] != '1')
 			t->ray->posy = t->ray->posy - SPEED * t->ray->diry;
 	}
-	if (t->mlx->analog.w == 1)
+	if (t->mlx->analog.shift == 1 && t->mlx->analog.w == 1)
+	{
+		if (t->map[(int)(t->ray->posx + 0.23 * t->ray->dirx)] \
+		[(int)t->ray->posy] != '1')
+			t->ray->posx = t->ray->posx + 0.23 * t->ray->dirx;
+		if (t->map[(int)t->ray->posx] \
+		[(int)(t->ray->posy + t->ray->diry * 0.23)] != '1')
+			t->ray->posy = t->ray->posy + 0.23 * t->ray->diry;
+	}
+	else if (t->mlx->analog.w == 1)
 	{
 		if (t->map[(int)(t->ray->posx + SPEED * t->ray->dirx)] \
 		[(int)t->ray->posy] != '1')

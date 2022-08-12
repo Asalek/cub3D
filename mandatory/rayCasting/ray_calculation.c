@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/04 17:10:08 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/09 16:18:38 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,11 @@ void	dig_difftial_ans_paint(t_ray *ray,t_mlx *mlx,char **map,int x)
 	ray->deltadisty = fabs(1 / ray->raydiry);
 	// ray->deltadistx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));// ray to the second X encounter with
 	// ray->deltadisty = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));// ray to the second Y encounter with
-	ray->hit = 0; //was there a wall hit?
 	calc_step_init_sidedist(ray, mlx, map);
 }
 
 void	calc_step_init_sidedist(t_ray *r, t_mlx *mlx, char **map)
 {
-	if (r->raydirx < 0)
-	{
-		r->stepx = -1;
-		r->sidedistx = (r->posx - r->mapx) * r->deltadistx;
-	}
-	else
-	{
-		r->stepx = 1;
-		r->sidedistx = (r->mapx + 1.0 - r->posx) * r->deltadistx;
-	}
 	if (r->raydiry < 0)
 	{
 		r->stepy = -1;
@@ -56,11 +45,22 @@ void	calc_step_init_sidedist(t_ray *r, t_mlx *mlx, char **map)
 		r->stepy = 1;
 		r->sidedisty = (r->mapy + 1.0 - r->posy) * r->deltadisty;
 	}
+	if (r->raydirx < 0)
+	{
+		r->stepx = -1;
+		r->sidedistx = (r->posx - r->mapx) * r->deltadistx;
+	}
+	else
+	{
+		r->stepx = 1;
+		r->sidedistx = (r->mapx + 1.0 - r->posx) * r->deltadistx;
+	}
 	walls_hits(r, mlx, map);
 }
 
 void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 {
+	r->hit = 0; //was there a wall hit?
 	while (r->hit == 0)
 	{
 		if (r->sidedistx < r->sidedisty)
@@ -141,4 +141,4 @@ void	walls_colors(t_ray *r, t_mlx *mlx)
 	while (i < Y_AXIS)
 		r->tab[i++][mlx->x] = r->f_color;
 }
-//ToDo: set the color of the wall based on the clor from the texture
+//ToDo: set the color of the wall based on the color from the texture

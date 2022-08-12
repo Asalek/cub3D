@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/04 17:08:06 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/11 20:30:09 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 	mlx->img = mlx_new_image(mlx->mlx, X_AXIS, Y_AXIS);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel, \
 	&mlx->size_line, &mlx->endian);
-	i = 0;
+	i = 0;	
 	while (i < X_AXIS)
 	{
 		mlx->x = i;
@@ -76,11 +76,12 @@ void	window_creation(t_all *all, t_ray *ray, t_map p_map)
 	texture_getter(s.mlx, ray, p_map);
 	paint_on_screen(ray, &s, all->map);
 	all->mlx->analog.w = 0;
+	all->mlx->analog.d = 0;
 	mlx_hook(s.win, 02, 1L<<0, button_press, all);
 	mlx_hook(s.win, 03, 1L<<1, button_release, all);
 	mlx_hook(s.win, 17, 1L<<17, esc, all);
 	mlx_loop_hook(s.mlx, player_movement, all);
-	mlx_hook(s.win, 06, 1L << 6, mouse, all);
+	mlx_hook(s.win, 06, 1L << 06, mouse, all);
 	mlx_loop(s.mlx);
 }
 
