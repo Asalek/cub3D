@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/13 20:40:38 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/13 20:57:46 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ void	wall_high(t_ray *r, t_mlx *mlx)
 	r->wallx -= floor(r->wallx);
 
 	r->texx = (int)(r->wallx * (double)T_W);
-	if (r->side == 0 && r->raydirx > 0)
-		r->texx = T_W - r->texx - 1;
-	if (r->side == 1 && r->raydiry < 0)
-		r->texx = T_W - r->texx - 1;
+	// if (r->side == 0 && r->raydirx > 0)
+	// 	r->texx = T_W - r->texx - 1;
+	// if (r->side == 1 && r->raydiry < 0)
+	r->texx = T_W - r->texx - 1;
 
 	r->steps = 1.0 * T_H / r->line_height;
 	r->tex_position = (r->drawstart - Y_AXIS / 2 + \
