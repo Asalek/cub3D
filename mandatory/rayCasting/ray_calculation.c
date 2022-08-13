@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/13 15:38:46 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/13 20:40:38 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,22 +101,26 @@ void	wall_high(t_ray *r, t_mlx *mlx)
 	else
 		r->perpwalldist = r->sidedisty - r->deltadisty;
 	r->line_height = (int)(Y_AXIS / r->perpwalldist);//height of the vertical line that should be drawn
-	r->drawstart = -r->line_height / 2 + Y_AXIS / 2; //Y_AXIS / 2 half of screen for wall other C or F
+	//calculate lowest and highest pixel to fill in current stripe
+	r->drawstart = -r->line_height / 2 + Y_AXIS / 2;
 	if (r->drawstart < 0)
 		r->drawstart = 0;
 	r->drawend = r->line_height / 2 + Y_AXIS / 2;
 	if (r->drawend >= Y_AXIS)
 		r->drawend = Y_AXIS - 1;
+	//wallX represents the exact value where the wall was hit
 	if (r->side == 0)
-		r->wallx = r->posy + r->perpwalldist * r->raydiry;
+		r->wallx = r->posy + r->perpwalldist * r->raydiry; // y horizontal on wall
 	else
 		r->wallx = r->posx + r->perpwalldist * r->raydirx;
 	r->wallx -= floor(r->wallx);
-	r->texx = (int)(r->wallx * (float)T_W);
+
+	r->texx = (int)(r->wallx * (double)T_W);
 	if (r->side == 0 && r->raydirx > 0)
 		r->texx = T_W - r->texx - 1;
 	if (r->side == 1 && r->raydiry < 0)
 		r->texx = T_W - r->texx - 1;
+
 	r->steps = 1.0 * T_H / r->line_height;
 	r->tex_position = (r->drawstart - Y_AXIS / 2 + \
 		r->line_height / 2) * r->steps;
