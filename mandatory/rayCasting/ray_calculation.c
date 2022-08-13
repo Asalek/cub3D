@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/12 18:54:52 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/13 15:38:46 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 		else
 		{
 			r->img_n = 3;
-			r->sidedisty += r->deltadisty;
+			r->sidedisty += r->deltadisty;   //next square
 			r->mapy += r->stepy;
 			r->side = 1;  //wall in right or left. sloped (3wj)
 			if (r->raydiry > 0)
@@ -93,14 +93,14 @@ void	walls_hits(t_ray *r, t_mlx *mlx, char **map)
 	}
 	wall_high(r, mlx);
 }
-
+//dda done
 void	wall_high(t_ray *r, t_mlx *mlx)
 {
 	if (r->side == 0)
 		r->perpwalldist = r->sidedistx - r->deltadistx;  //how far i'am for the wall
 	else
 		r->perpwalldist = r->sidedisty - r->deltadisty;
-	r->line_height = (int)(Y_AXIS / r->perpwalldist);
+	r->line_height = (int)(Y_AXIS / r->perpwalldist);//height of the vertical line that should be drawn
 	r->drawstart = -r->line_height / 2 + Y_AXIS / 2; //Y_AXIS / 2 half of screen for wall other C or F
 	if (r->drawstart < 0)
 		r->drawstart = 0;
