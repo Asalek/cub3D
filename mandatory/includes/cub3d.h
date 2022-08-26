@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/14 18:23:34 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/26 16:03:29 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "../minilibx_opengl_20191021/mlx.h"
 
 # define BUFFER_SIZE 1
-# define X_AXIS 2800
-# define Y_AXIS 1800
+# define X_AXIS 800
+# define Y_AXIS 500
 # define PI 3.1415926535
 # define T_W 64
 # define COS_A 193.2
