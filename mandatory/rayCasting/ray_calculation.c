@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:11:09 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/26 16:16:17 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/28 18:26:29 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	walls_colors(t_ray *r, t_mlx *mlx)
 		r->tab[i++][mlx->x] = r->c_color;
 	while (i < r->drawend)
 	{
-		r->texy = (int)r->tex_position & (T_H - 1);
+		r->texy = (int)r->tex_position;// & (T_H - 1);
 		r->tex_position += r->steps;
 		r->color = img_color(&r->img[r->img_n], r->texx, r->texy);
 		r->tab[i][mlx->x] = r->color;
