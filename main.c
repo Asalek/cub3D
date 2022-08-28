@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/28 18:34:57 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/28 19:12:14 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 unsigned int	img_color(t_img *t, int x, int y)
 {
-	int		offset;
-	char	*img_pix;
+	int			offset;
+	char		*img_pix;
 	uint32_t	color;
+
 	offset = y * t->sl + x * (t->bpp / 8);//memory offset (line_length differs from the actual window width)
 	img_pix = t->addr + offset;
 	if (!img_pix)
@@ -24,7 +25,8 @@ unsigned int	img_color(t_img *t, int x, int y)
 		printf("Error in puting pixel's color!\n");
 		exit(0);
 	}
-	color = (((unsigned char)img_pix[2] << 16) + ((unsigned char)img_pix[1] << 8) + (unsigned char)img_pix[0]);
+	color = (((unsigned char)img_pix[2] << 16) \
+		+ ((unsigned char)img_pix[1] << 8) + (unsigned char)img_pix[0]);
 	if (color)
 		return (color);
 	else

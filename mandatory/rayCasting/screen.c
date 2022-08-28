@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/11 20:30:09 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/28 19:50:16 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 	int	i;
 	int	x;
 	int	y;
+
+	t_mlx m;			// bonus
+	m.img = mlx_new_image(mlx->mlx, X_AXIS / 6, Y_AXIS / 5);		//b
+	m.addr = mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.size_line, &m.endian);	//b
 
 	mlx->img = mlx_new_image(mlx->mlx, X_AXIS, Y_AXIS);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel, \
@@ -45,7 +49,10 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 		x++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, m.img, 5, (Y_AXIS - (Y_AXIS / 5)) - 5);//b
+	mlx_string_put(mlx->mlx, mlx->win, (X_AXIS - (X_AXIS / 5)), 0, 0xf5f516, "Asalek & Yelgaro");//b
 	mlx_destroy_image(mlx->mlx, mlx->img);
+	mlx_destroy_image(mlx->mlx, m.img);//b
 }
 
 void	window_creation(t_all *all, t_ray *ray, t_map p_map)
