@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/30 20:44:23 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 21:53:06 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@
 
 # define GUN_IMG_1 "mandatory/spirit/1.xpm"
 # define GUN_IMG_2 "mandatory/spirit/2.xpm"
-# define GUN_IMG_3 "mandatory/spirit/3.xpm"
+# define GUN_IMG_3 "mandatory/spirit/6.xpm"
 # define GUN_IMG_4 "mandatory/spirit/4.xpm"
 # define GUN_IMG_5 "mandatory/spirit/5.xpm"
-# define GUN_IMG_6 "mandatory/spirit/6.xpm"
+# define GUN_IMG_6 "mandatory/spirit/2.xpm"
 
 typedef struct s_color {
 	int	r;
@@ -147,6 +147,8 @@ typedef struct s_analog
 	int	w;
 	int	s;
 	int	d;
+	int	space;
+	int	up_arrow;
 	int	left_arrow;
 	int	right_arrow;
 	int	shift;

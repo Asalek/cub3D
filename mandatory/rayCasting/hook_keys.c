@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:15:31 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/30 21:09:28 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 21:48:06 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int	button_press(int key, t_all *al)
 		al->mlx->analog.left_arrow = 1;
 	else if (key == 257)
 		al->mlx->analog.shift = 1;
+	else if (key == 49)
+		al->mlx->analog.space = 1;
+	else if (key == 126)
+		al->mlx->analog.up_arrow = 1;
 	return (0);
 }
 int	button_release(int key, t_all *al)
@@ -55,6 +59,10 @@ int	button_release(int key, t_all *al)
 		al->mlx->analog.left_arrow = 0;
 	else if (key == 257)
 		al->mlx->analog.shift = 0;
+	else if (key == 49)
+		al->mlx->analog.space = 0;
+	else if (key == 126)
+		al->mlx->analog.up_arrow = 0;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/30 21:08:27 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 21:51:18 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ void	window_creation(t_all *all, t_ray *ray, t_map p_map)
 	spirit_img(ray, s.mlx);			//spirit bonus
 	all->mlx->analog.w = 0;
 	all->mlx->analog.d = 0;
+	all->mlx->analog.space = 0;
+	all->mlx->analog.up_arrow = 0;
 	paint_on_screen(ray, &s, all->map);
 	mlx_hook(s.win, 02, 1L<<0, button_press, all);
 	mlx_hook(s.win, 03, 1L<<1, button_release, all);
