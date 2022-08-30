@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:23:44 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/26 19:27:49 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 18:18:37 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,12 @@ void	doors_open_close(t_all *t)
 	}
 }
 
+
+
 int	player_movement(t_all *t)
 {
+	static int i = 0;
+	// int poss = 0;
 	if (t->mlx->analog.a == 1)
 	{
 		if (t->map[(int)t->ray->posx] \
@@ -150,5 +154,62 @@ int	player_movement(t_all *t)
 	rotate_player(t);
 	doors_open_close(t);
 	paint_on_screen(t->ray, t->mlx, t->map);
+	spirit_display();
+	if (i > 0)
+	{
+		if (i >= 0 && i <= 3)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[0].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[0].img);//b
+		}
+		else if (i > 3 && i <= 6)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[1].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[1].img);//b
+		}
+		else if (i > 6 && i <= 9)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[2].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[2].img);//b
+		}
+		else if (i > 9 && i <= 12)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[3].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[3].img);//b
+		}
+		else if (i > 12 && i <= 15)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[4].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[4].img);//b
+		}
+		else if (i > 15 && i <= 18)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[5].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[5].img);//b
+		}
+		else if (i > 18 && i <= 21)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[6].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[6].img);//b
+		}
+		else if (i > 21 && i <= 24)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[7].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[7].img);//b
+		}
+		else if (i > 24 && i <= 27)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[8].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[8].img);//b
+		}
+		else if (i > 27 && i < 31)
+		{
+			mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->s_img[9].img, 5, 0);//b		
+			// mlx_destroy_image(t->mlx->mlx, t->ray->s_img[9].img);//b
+		}
+		else
+			i = 0;
+	}
+	i++;
 	return (0);
 }

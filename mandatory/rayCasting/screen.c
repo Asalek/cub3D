@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/28 19:50:16 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 17:39:38 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 	int	x;
 	int	y;
 
-	t_mlx m;			// bonus
-	m.img = mlx_new_image(mlx->mlx, X_AXIS / 6, Y_AXIS / 5);		//b
-	m.addr = mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.size_line, &m.endian);	//b
+	// t_mlx m;			// bonus
+	// m.img = mlx_new_image(mlx->mlx, X_AXIS / 6, Y_AXIS / 5);		//b
+	// m.addr = mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.size_line, &m.endian);	//b
 
 	mlx->img = mlx_new_image(mlx->mlx, X_AXIS, Y_AXIS);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel, \
@@ -49,10 +49,26 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 		x++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, m.img, 5, (Y_AXIS - (Y_AXIS / 5)) - 5);//b
+	// mlx_put_image_to_window(mlx->mlx, mlx->win, m.img, 5, (Y_AXIS - (Y_AXIS / 5)) - 5);//b
 	mlx_string_put(mlx->mlx, mlx->win, (X_AXIS - (X_AXIS / 5)), 0, 0xf5f516, "Asalek & Yelgaro");//b
 	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx_destroy_image(mlx->mlx, m.img);//b
+	// mlx_destroy_image(mlx->mlx, m.img);//b
+}
+
+void	spirit_img(t_ray *r, void *mlx)
+{
+	get_image(mlx, &r->s_img[0], S_IMG_1);
+	get_image(mlx, &r->s_img[1], S_IMG_2);
+	get_image(mlx, &r->s_img[2], S_IMG_3);
+	get_image(mlx, &r->s_img[3], S_IMG_4);
+	get_image(mlx, &r->s_img[4], S_IMG_5);
+	get_image(mlx, &r->s_img[5], S_IMG_6);
+	get_image(mlx, &r->s_img[6], S_IMG_7);
+	get_image(mlx, &r->s_img[7], S_IMG_8);
+	get_image(mlx, &r->s_img[8], S_IMG_9);
+	get_image(mlx, &r->s_img[9], S_IMG_10);
+	// mlx_put_image_to_window(mlx->mlx, mlx->win, img[0].img, 5, 0);//b
+	// mlx_destroy_image(mlx->mlx, img[0].img);//b
 }
 
 void	window_creation(t_all *all, t_ray *ray, t_map p_map)
@@ -81,6 +97,7 @@ void	window_creation(t_all *all, t_ray *ray, t_map p_map)
 	s.mlx = mlx_init();
 	s.win = mlx_new_window (s.mlx, X_AXIS, Y_AXIS, "Cub3D_Asalek_Yelgharo");
 	texture_getter(s.mlx, ray, p_map);
+	spirit_img(ray, s.mlx);			//spirit bonus
 	paint_on_screen(ray, &s, all->map);
 	all->mlx->analog.w = 0;
 	all->mlx->analog.d = 0;
@@ -100,10 +117,15 @@ void	get_image(void *mlx, t_img	*img, char *filename)
 	img->img = mlx_xpm_file_to_image(mlx, filename, &i, &j);
 	if (!img->img)
 	{
-		printf("invalid texture files");
+		printf("invalid texture files\n");
 		exit(0);
 	}
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->sl, &img->en);
+	if (!img->addr)
+	{
+		printf("Error While getting Img Address\n");
+		exit(0);
+	}
 }
 
 void	texture_getter(void *mlx, t_ray *ray, t_map parsing)

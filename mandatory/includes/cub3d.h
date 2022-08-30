@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/26 16:03:29 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 17:13:38 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@
 # define IMG_6 "mandatory/walls_floor/door_open.xpm"
 # define IMG_7 "mandatory/walls_floor/pillar.xpm"
 # define IMG_8 "mandatory/walls_floor/asalek.xpm"
+
+# define S_IMG_1 "mandatory/spirit/fire1.xpm"
+# define S_IMG_2 "mandatory/spirit/fire2.xpm"
+# define S_IMG_3 "mandatory/spirit/fire3.xpm"
+# define S_IMG_4 "mandatory/spirit/fire4.xpm"
+# define S_IMG_5 "mandatory/spirit/fire5.xpm"
+# define S_IMG_6 "mandatory/spirit/fire6.xpm"
+# define S_IMG_7 "mandatory/spirit/fire7.xpm"
+# define S_IMG_8 "mandatory/spirit/fire8.xpm"
+# define S_IMG_9 "mandatory/spirit/fire9.xpm"
+# define S_IMG_10 "mandatory/spirit/fire10.xpm"
 
 typedef struct s_color {
 	int	r;
@@ -111,6 +122,7 @@ typedef struct s_ray
 	double			wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
 	double			tex_position;// coordonnée de départ
 	t_img			img[8];
+	t_img			s_img[10];
 }	t_ray;
 
 typedef struct s_analog
