@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:15:31 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/09 22:50:03 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 21:09:28 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	mouse(int x, int y, t_all *t)
 	(void)y;
 	mlx_clear_window(t->mlx->mlx, t->mlx->win);
 	rotate_player_with_mouse(x, old_x, t);
-	paint_on_screen(t->ray, t->mlx, t->map);
 	old_x = x;
+	player_movement(t);
 	return (0);
 }

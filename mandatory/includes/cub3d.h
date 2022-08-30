@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/30 17:13:38 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/30 20:44:23 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define BUFFER_SIZE 1
 # define X_AXIS 800
-# define Y_AXIS 500
+# define Y_AXIS 600
 # define PI 3.1415926535
 # define T_W 64
 # define COS_A 193.2
@@ -51,6 +51,21 @@
 # define S_IMG_8 "mandatory/spirit/fire8.xpm"
 # define S_IMG_9 "mandatory/spirit/fire9.xpm"
 # define S_IMG_10 "mandatory/spirit/fire10.xpm"
+# define S_IMG_11 "mandatory/spirit/fire11.xpm"
+# define S_IMG_12 "mandatory/spirit/fire12.xpm"
+# define S_IMG_13 "mandatory/spirit/fire13.xpm"
+# define S_IMG_14 "mandatory/spirit/fire14.xpm"
+# define S_IMG_15 "mandatory/spirit/fire15.xpm"
+# define S_IMG_16 "mandatory/spirit/fire16.xpm"
+# define S_IMG_17 "mandatory/spirit/fire17.xpm"
+# define S_IMG_18 "mandatory/spirit/fire18.xpm"
+
+# define GUN_IMG_1 "mandatory/spirit/1.xpm"
+# define GUN_IMG_2 "mandatory/spirit/2.xpm"
+# define GUN_IMG_3 "mandatory/spirit/3.xpm"
+# define GUN_IMG_4 "mandatory/spirit/4.xpm"
+# define GUN_IMG_5 "mandatory/spirit/5.xpm"
+# define GUN_IMG_6 "mandatory/spirit/6.xpm"
 
 typedef struct s_color {
 	int	r;
@@ -122,7 +137,8 @@ typedef struct s_ray
 	double			wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
 	double			tex_position;// coordonnée de départ
 	t_img			img[8];
-	t_img			s_img[10];
+	t_img			s_img[18];
+	t_img			g_img[6];
 }	t_ray;
 
 typedef struct s_analog
