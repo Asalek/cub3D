@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:15:31 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/30 21:48:06 by asalek           ###   ########.fr       */
+/*   Updated: 2022/08/31 15:11:09 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	esc(int key)
 {
 	(void)key;
-	
 	return (exit(0), 0);
 }
 
@@ -43,6 +42,7 @@ int	button_press(int key, t_all *al)
 		al->mlx->analog.up_arrow = 1;
 	return (0);
 }
+
 int	button_release(int key, t_all *al)
 {
 	if (key == 0)

@@ -2,8 +2,8 @@ NO ./mandatory/paths/path_to_the_north_texture
 SO ./mandatory/paths/path_to_the_south_texture
 WE ./mandatory/paths/path_to_the_west_texture
 EA ./mandatory/paths/path_to_the_east_texture
-F 220,100,5
-C 200,110,10
+F 133,36,36
+C 209,165,165
 111111111111111
 100000100000001
 100S011111111111111111111
