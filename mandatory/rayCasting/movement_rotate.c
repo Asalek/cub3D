@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:23:44 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/31 15:15:24 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:30:48 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	player_movement(t_all *t)
 {
 	static int i = 0;
 	int poss = (X_AXIS - (X_AXIS / 3.4));
-	int possy = (Y_AXIS - (Y_AXIS + (Y_AXIS / 5)));
+	int possy = (Y_AXIS - (Y_AXIS + (Y_AXIS / 6)));
 	if (t->mlx->analog.a == 1)
 	{
 		if (t->map[(int)t->ray->posx] \
@@ -153,11 +153,11 @@ int	player_movement(t_all *t)
 	doors_open_close(t);
 	paint_on_screen(t->ray, t->mlx, t->map);
 	if (t->mlx->analog.up_arrow == 1)
-		mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->g_img[2].img, (X_AXIS / 3),  Y_AXIS / 4);
+		mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->g_img[2].img, (X_AXIS / 3),  (Y_AXIS) - (Y_AXIS / 2));
 	else if (t->mlx->analog.space == 0)
-		mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->g_img[0].img, (X_AXIS / 3),  Y_AXIS / 4);
+		mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->g_img[0].img, (X_AXIS / 3),  (Y_AXIS) - (Y_AXIS / 2));
 	else
-		mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->g_img[1].img, (X_AXIS / 3),  Y_AXIS / 4);
+		mlx_put_image_to_window(t->mlx->mlx, t->mlx->win, t->ray->g_img[1].img, (X_AXIS / 3),  (Y_AXIS) - (Y_AXIS / 2));
 	if (i > 0)
 	{
 		if (i >= 0 && i <= 10)
