@@ -6,7 +6,7 @@
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/09/01 18:48:06 by yelgharo         ###   ########.fr       */
+/*   Updated: 2022/09/02 00:41:58 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-// # include <MMsystem.h>
 # include <fcntl.h>
 # include <math.h>
 # include "../minilibx_opengl_20191021/mlx.h"
 
 # define BUFFER_SIZE 1
-# define X_AXIS 1000
+# define X_AXIS 1800
 # define Y_AXIS 800
 # define PI 3.1415926535
 # define T_W 64
@@ -103,39 +102,39 @@ typedef struct s_images
 
 typedef struct s_ray
 {
-	double			posx; //position x du joueur
-	double			posy; //position y du joueur
-	double			dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
-	double			diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
-	double			planex; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
-	double			planey; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
-	double			raydirx; //calcul de direction x du rayon
-	double			raydiry; //calcul de direction y du rayon
-	double			camera; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
-	int				mapx; // coordonée x du carré dans lequel est pos
-	int				mapy; // coordonnée y du carré dans lequel est pos
-	int				stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-	int				stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
-	double			sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double			sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
-	double			deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
-	double			deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
-	int				hit; // 1 si un mur a ete touche, 0 sinon
-	double			perpwalldist; // distance du joueur au mur
-	int				side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-	int				line_height; //hauteur de la ligne a dessiner
-	int				drawstart; //position de debut ou il faut dessiner
-	int				drawend; //position de fin ou il faut dessiner
-	unsigned int	**tab; //tablau de couleur
-	unsigned int	f_color; //floor color
-	unsigned int	c_color; //ciel color
-	unsigned int	color; //wall colors
-	int				texx; // coordonnée x de la texture
-	int				texy; // coordonnée y de la texture
-	int				img_n;// image number 1 to 7
-	double			steps; //indique de combien augmenter les coordonnées de la texture pour chaque pixel
-	double			wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
-	double			tex_position;// coordonnée de départ
+	double			posx;
+	double			posy;
+	double			dirx;
+	double			diry;
+	double			planex;
+	double			planey;
+	double			raydirx;
+	double			raydiry;
+	double			camera;
+	int				mapx;
+	int				mapy;
+	int				stepx;
+	int				stepy;
+	double			sidedistx;
+	double			sidedisty;
+	double			deltadistx;
+	double			deltadisty;
+	int				hit;
+	double			perpwalldist;
+	int				side;
+	int				line_height;
+	int				drawstart;
+	int				drawend;
+	unsigned int	**tab;
+	unsigned int	f_color;
+	unsigned int	c_color;
+	unsigned int	color;
+	int				texx;
+	int				texy;
+	int				img_n;
+	double			steps;
+	double			wallx;
+	double			tex_position;
 	t_img			img[8];
 	t_img			s_img[18];
 	t_img			g_img[6];
@@ -185,6 +184,7 @@ void			map_check(t_map *map);
 void			error_map(int num);
 void			ft_color_ceiling(t_map *map, int i, int *e, int j);
 void			ft_color_floor(t_map *map, int i, int *e, int j);
+void			check_if_func(t_map *map, int i, int j);
 
 //------------------read line :
 char			*get_next_line(int fd);
@@ -200,7 +200,6 @@ char			*ft_strdup(const char *s1);
 int				ft_atoi(const char *str);
 
 //-------------------ray casting :
-
 int				ft_error(char *str, int exit_status);
 char			*ft_strchr(char *s, int c);
 void			calc_step_init_sidedist(t_ray *r, t_mlx *mlx, char **map);
@@ -220,10 +219,15 @@ int				button_release(int key, t_all *al);
 int				esc(int key);
 int				mouse(int x, int y, t_all *all);
 void			rotate_player_with_mouse(int x, int old_x, t_all *t);
-void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx \
-				, char **map, int x);
+void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx, \
+				char **map, int x);
+void			wall_hit_if(t_ray *r, char **map);
+void			table_allocation(t_ray *ray);
+void			r_p_with_if(t_all *t);
 
-		//display sprites
-void    to_display(t_all *t);
+//----------------------display sprites :
+void			speed(t_all *t);
+void			spirit_img(t_ray *r, void *mlx);
+void			to_display(t_all *t);
 
 #endif

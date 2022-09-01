@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:31:12 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/28 19:12:14 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/02 00:21:10 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ unsigned int	img_color(t_img *t, int x, int y)
 	char		*img_pix;
 	uint32_t	color;
 
-	offset = y * t->sl + x * (t->bpp / 8);//memory offset (line_length differs from the actual window width)
+	offset = y * t->sl + x * (t->bpp / 8);
 	img_pix = t->addr + offset;
 	if (!img_pix)
 	{

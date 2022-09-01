@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:21:15 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/28 19:36:04 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/02 00:32:56 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,13 @@ void	error_map(int num)
 void	ft_conditions_check(t_map *map, int i, int j)
 {
 	if (map->map[i][j] != '0' && map->map[i][j] != '1' \
-		&& map->map[i][j] != '2' && map->map[i][j] != '3'\
+		&& map->map[i][j] != '2' && map->map[i][j] != '3' \
 		&& map->map[i][j] != 'N' && map->map[i][j] != 'S' \
 		&& map->map[i][j] != 'W' && map->map[i][j] != 'E' \
 		&& map->map[i][j] != ' ')
 		error_map(1);
 	if (map->map[i][j] == '0')
-	{
-		if (i == 0 || i == map->ln - 1)
-			error_map(2);
-		else if (map->map[i - 1][j] <= 32 || map->map[i + 1][j] <= 32 \
-			|| map->map[i][j - 1] <= 32 || map->map[i][j + 1] <= 32)
-			error_map(2);
-	}
+		check_if_func(map, i, j);
 	else if (map->map[i][j] == 'S' || map->map[i][j] == 'N' \
 		|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 	{

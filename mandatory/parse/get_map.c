@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 06:39:33 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/27 15:24:15 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/02 00:32:21 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ int	read_map_size(char *s)
 	}
 	close(fd);
 	return (i);
+}
+
+void	check_if_func(t_map *map, int i, int j)
+{
+	if (i == 0 || i == map->ln - 1)
+		error_map(2);
+	else if (map->map[i - 1][j] <= 32 || map->map[i + 1][j] <= 32 \
+		|| map->map[i][j - 1] <= 32 || map->map[i][j + 1] <= 32)
+		error_map(2);
 }
