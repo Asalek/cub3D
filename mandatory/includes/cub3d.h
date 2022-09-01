@@ -23,7 +23,7 @@
 # include "../minilibx_opengl_20191021/mlx.h"
 
 # define BUFFER_SIZE 1
-# define X_AXIS 800
+# define X_AXIS 1800
 # define Y_AXIS 600
 # define PI 3.1415926535
 # define T_W 64
