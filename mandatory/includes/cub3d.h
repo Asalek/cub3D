@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/08/30 22:05:57 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/01 18:48:06 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "../minilibx_opengl_20191021/mlx.h"
 
 # define BUFFER_SIZE 1
-# define X_AXIS 1800
-# define Y_AXIS 600
+# define X_AXIS 1000
+# define Y_AXIS 800
 # define PI 3.1415926535
 # define T_W 64
 # define COS_A 193.2
@@ -222,5 +222,8 @@ int				mouse(int x, int y, t_all *all);
 void			rotate_player_with_mouse(int x, int old_x, t_all *t);
 void			dig_difftial_ans_paint(t_ray *ray, t_mlx *mlx \
 				, char **map, int x);
+
+		//display sprites
+void    to_display(t_all *t);
 
 #endif

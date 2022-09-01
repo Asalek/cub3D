@@ -15,7 +15,8 @@ CFILES = main.c \
 	./mandatory/rayCasting/player_direction.c \
 	./mandatory/rayCasting/screen.c \
 	./mandatory/rayCasting/movement_rotate.c \
-	./mandatory/rayCasting/hook_keys.c
+	./mandatory/rayCasting/hook_keys.c \
+	./mandatory/rayCasting/sprites_display.c
 
 
 OFILES = $(CFILES:.c=.o)
