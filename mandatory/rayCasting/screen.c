@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/08/30 21:51:18 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/02 19:39:53 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,85 @@ void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	draw(t_mlx *mlx, float x, float y, int color, t_mini *min)
+{
+	int i, j;
+	x *= 4;
+	y *= 4;
+	i = x + 10;
+	j = y + 10;
+	while (y < j && y < min->height)
+	{
+		while (x < i && x < min->width)
+		{
+			my_mlx_pixel_put(mlx, x, y, color);
+			x++;
+		}
+		x -= 10;
+		y++;
+	}
+}
+
+void	minimap(t_ray *ray, t_mini *mini, char **map, t_mlx *mlx)
+{
+	int i, j;
+	i = -1;
+	j = 0;
+	while (++j < mini->width)
+	{
+		while (++i < mini->height)
+		{
+			if (i == 0 || j == 0 || i >= mini->height - 1 || j >= mini->width - 1)
+				my_mlx_pixel_put(mlx, j, i, 0x00000);
+			else
+				my_mlx_pixel_put(mlx, j, i, 0x852424);
+		}
+		i = -1;
+	}
+	
+	i = ray->posx - mini->height / 2;
+	if (i < 0)
+		i = 0;
+	mini->i = i;
+	mini->ii = i + mini->height;
+	while (map[i] && i < mini->ii)
+	{
+		j = ray->posy - mini->width / 2;
+		if(j < 0)
+			j = 0;
+		mini->j = j;
+		mini->jj = j + mini->width;
+		while (map[i][j] && j< mini->jj)
+		{
+			if (map[i][j] == '1')
+				draw(mlx, (float)j, (float)i, 0x852424, mini);
+			if (map[i][j] == '0')
+				draw(mlx, (float)j, (float)i, 0x8a652b, mini);
+			if (map[i][j] == '2' || map[i][j] == '3')
+				draw(mlx, (float)j, (float)i, 0x532b87, mini);
+			j++;
+		}
+		i++;
+	}
+	my_mlx_pixel_put(mlx, ray->posx, ray->posy, 0x00000);
+	my_mlx_pixel_put(mlx, ray->posx + 1, ray->posy, 0x00000);
+	my_mlx_pixel_put(mlx, ray->posx, ray->posy + 1, 0x00000);
+	my_mlx_pixel_put(mlx, ray->posx + 1, ray->posy + 1, 0x00000);
+	my_mlx_pixel_put(mlx, ray->posx + 2, ray->posy + 2, 0x00000);
+	my_mlx_pixel_put(mlx, ray->posx + 2, ray->posy, 0x00000);
+	my_mlx_pixel_put(mlx, ray->posx, ray->posy + 2, 0x00000);
+}
+
 void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 {
 	int	i;
 	int	x;
 	int	y;
 
-	// t_mlx m;			// bonus
-	// m.img = mlx_new_image(mlx->mlx, X_AXIS / 6, Y_AXIS / 5);		//b
-	// m.addr = mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.size_line, &m.endian);	//b
+	t_mlx m;			// bonus
+	t_mini mini;
+	m.img = mlx_new_image(mlx->mlx, X_AXIS / 5, Y_AXIS / 5);		//b
+	m.addr = mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.size_line, &m.endian);	//b
 	mlx->img = mlx_new_image(mlx->mlx, X_AXIS, Y_AXIS);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel, \
 	&mlx->size_line, &mlx->endian);
@@ -48,10 +118,13 @@ void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
 		x++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-	// mlx_put_image_to_window(mlx->mlx, mlx->win, m.img, 5, (Y_AXIS - (Y_AXIS / 5)) - 5);//b
+	mini.height = Y_AXIS / 5;
+	mini.width = X_AXIS / 5;
+	minimap(ray, &mini, map, &m);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, m.img, 5, (Y_AXIS - (Y_AXIS / 5)) - 5);//b
 	mlx_string_put(mlx->mlx, mlx->win, (X_AXIS - (X_AXIS / 5)), 0, 0xf5f516, "Asalek & Yelgaro");//b
+	mlx_destroy_image(mlx->mlx, m.img);//b
 	mlx_destroy_image(mlx->mlx, mlx->img);
-	// mlx_destroy_image(mlx->mlx, m.img);//b
 }
 
 void	spirit_img(t_ray *r, void *mlx)

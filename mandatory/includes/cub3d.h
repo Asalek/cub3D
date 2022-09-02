@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 04:33:19 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/09/01 15:28:34 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/02 15:33:05 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,16 @@ typedef struct s_color {
 	int	g;
 	int	b;
 }	t_color;
+
+typedef struct s_mini
+{
+	float	width;
+	float	height;
+	float	i;
+	float	j;
+	float	ii;
+	float	jj;
+}	t_mini;
 
 typedef struct s_map {
 	char	**tab;
