@@ -6,7 +6,7 @@
 /*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 23:02:53 by asalek            #+#    #+#             */
-/*   Updated: 2022/09/02 19:39:53 by asalek           ###   ########.fr       */
+/*   Updated: 2022/09/03 15:13:47 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
 void	draw(t_mlx *mlx, float x, float y, int color, t_mini *min)
 {
 	int i, j;
-	x *= 4;
-	y *= 4;
+	x *= 3;
+	y *= 3;
 	i = x + 10;
 	j = y + 10;
 	while (y < j && y < min->height)
@@ -35,6 +35,24 @@ void	draw(t_mlx *mlx, float x, float y, int color, t_mini *min)
 			x++;
 		}
 		x -= 10;
+		y++;
+	}
+}
+void	draw2(t_mlx *mlx, float x, float y, int color, t_mini *min)
+{
+	int i, j;
+	x *= 3;
+	y *= 3;
+	i = x + 3;
+	j = y + 3;
+	while (y < j && y < min->height)
+	{
+		while (x < i && x < min->width)
+		{
+			my_mlx_pixel_put(mlx, x, y, color);
+			x++;
+		}
+		x -= 3;
 		y++;
 	}
 }
@@ -80,13 +98,14 @@ void	minimap(t_ray *ray, t_mini *mini, char **map, t_mlx *mlx)
 		}
 		i++;
 	}
-	my_mlx_pixel_put(mlx, ray->posx, ray->posy, 0x00000);
-	my_mlx_pixel_put(mlx, ray->posx + 1, ray->posy, 0x00000);
-	my_mlx_pixel_put(mlx, ray->posx, ray->posy + 1, 0x00000);
-	my_mlx_pixel_put(mlx, ray->posx + 1, ray->posy + 1, 0x00000);
-	my_mlx_pixel_put(mlx, ray->posx + 2, ray->posy + 2, 0x00000);
-	my_mlx_pixel_put(mlx, ray->posx + 2, ray->posy, 0x00000);
-	my_mlx_pixel_put(mlx, ray->posx, ray->posy + 2, 0x00000);
+	draw2(mlx, ray->posy, ray->posx, 0x000000, mini);
+	// my_mlx_pixel_put(mlx, ray->posx, ray->posy, 0x00000);
+	// my_mlx_pixel_put(mlx, ray->posx + 1, ray->posy, 0x00000);
+	// my_mlx_pixel_put(mlx, ray->posx, ray->posy + 1, 0x00000);
+	// my_mlx_pixel_put(mlx, ray->posx + 1, ray->posy + 1, 0x00000);
+	// my_mlx_pixel_put(mlx, ray->posx + 2, ray->posy + 2, 0x00000);
+	// my_mlx_pixel_put(mlx, ray->posx + 2, ray->posy, 0x00000);
+	// my_mlx_pixel_put(mlx, ray->posx, ray->posy + 2, 0x00000);
 }
 
 void	paint_on_screen(t_ray *ray, t_mlx *mlx, char **map)
