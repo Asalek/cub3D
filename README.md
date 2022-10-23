@@ -17,7 +17,7 @@ make
 
 ## Linux Installation
 
-In order to run this project you can use and install the C library[mlx](https://github.com/42Paris/minilibx-linux.git).
+In order to run this project you can use and install the C library [mlx](https://github.com/42Paris/minilibx-linux.git).
 
 ```bash
 git clone https://github.com/42Paris/minilibx-linux.git
@@ -26,6 +26,7 @@ git clone https://github.com/42Paris/minilibx-linux.git
 ## Youtube test game Video 
 
 [Dev Asalek Cub3D](https://www.youtube.com/watch?v=s2c9mDevVwM&t=103s)
+![](https://github.com/Asalek/cub3D/tree/main/gif/Cub3d_1337_42_asalek.gif)
 
 ## MLX Usage
 
