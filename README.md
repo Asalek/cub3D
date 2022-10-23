@@ -27,7 +27,8 @@ git clone https://github.com/42Paris/minilibx-linux.git
 
 [Dev Asalek Cub3D](https://www.youtube.com/watch?v=s2c9mDevVwM&t=103s)
 
-<img src="[https://github.com/Asalek/minishell/blob/master/GIF/test.gif](https://github.com/Asalek/cub3D/tree/main/gif/Cub3d_1337_42_asalek.gif)" width="800" height="400" />
+<img src="https://github.com/Asalek/cub3D/blob/main/gif/Cub3d_1337_42_asalek.gif" width="800" height="400" />
+
 ![](https://github.com/Asalek/cub3D/tree/main/gif/Cub3d_1337_42_asalek.gif)
 
 ## MLX Usage
